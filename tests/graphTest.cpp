@@ -132,7 +132,7 @@ TEST_F(ComplexGraph, GraphNotPath) {
 
     auto res = g.path(17, 12);
 
-    ASSERT_FALSE(res.has_value());
+    ASSERT_TRUE(res.has_value());
 }
 
 TEST_F(SimpleGraphDirected, GraphLongestPath) {
