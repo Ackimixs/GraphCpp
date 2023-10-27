@@ -126,6 +126,15 @@ TEST_F(SimpleGraph, GraphNoPath) {
     ASSERT_FALSE(res.has_value());
 }
 
+TEST_F(ComplexGraph, GraphNotPath) {
+
+    g.removeEdge(10, 11);
+
+    auto res = g.path(17, 12);
+
+    ASSERT_FALSE(res.has_value());
+}
+
 TEST_F(SimpleGraphDirected, GraphLongestPath) {
 
     auto res = g.longestPath();
