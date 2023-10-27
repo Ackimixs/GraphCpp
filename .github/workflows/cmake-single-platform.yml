@@ -31,4 +31,4 @@ jobs:
     - name: Test
       working-directory: ${{github.workspace}}/tests/build
 
-      run: ctest -C ${{env.BUILD_TYPE}}
+      run: ctest -C ${{env.BUILD_TYPE}} -V --rerun-failed --output-on-failure
