@@ -3,15 +3,19 @@
 #include <stdexcept>
 #include <iostream>
 
-/**
- * This class is implemented for graph adjacent matrix so only work for square matrix
- */
 class Matrix {
 protected:
     int **_m;
-    int _size;
+    /**
+     * @brief size of the matrix
+     * first = row
+     * second = col
+     */
+    std::pair<int, int> _size;
 
 public:
+    explicit Matrix(std::pair<int, int> size);
+
     explicit Matrix(int size);
 
     Matrix(const Matrix& matrix);
@@ -28,7 +32,7 @@ public:
 
     void add(int row, int col, int value);
 
-    [[nodiscard]] int size() const;
+    [[nodiscard]] std::pair<int, int> size() const;
 
     int operator()(int row, int col) const;
 
@@ -38,6 +42,10 @@ public:
 
     void operator-=(const Matrix& matrix);
 
+    /**
+     * @bug not fully implemented with matrix that are not square
+     * @param matrix
+     */
     void operator*=(const Matrix& matrix);
 
     void operator*=(int value);

@@ -68,14 +68,7 @@ namespace List {
          * @param matrix -> the matrix
          * @param directed -> the type of the graph DIRECTED or UNDIRECTED, default UNDIRECTED
          */
-        explicit Graph(std::vector<std::vector<edge>> matrix, Type::Graph directed = Type::UNDIRECTED);
-
-        /**
-         * @brief Create a graph from a matrix
-         * @param matrix -> the matrix
-         * @param directed -> the type of the graph DIRECTED or UNDIRECTED, default UNDIRECTED
-         */
-        explicit Graph(const Graph& graph);
+        Graph(const Graph& graph);
 
         /**
          * @brief Create a random graph
@@ -83,7 +76,7 @@ namespace List {
          * @param directed -> the type of the graph DIRECTED or UNDIRECTED, default UNDIRECTED
          * @param edgeProbability -> the probability of an edge to be created, default 0.5
          * @param includeRandomWeight -> if true the weight of the edge will be random, default false
-         * @return
+         * @return the random graph
          */
         static List::Graph createRandomGraph(int numberOfVertices, Type::Graph directed = Type::Graph::UNDIRECTED, double edgeProbability = 0.5, bool includeRandomWeight = false);
 

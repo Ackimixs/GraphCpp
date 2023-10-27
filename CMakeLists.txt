@@ -13,6 +13,3 @@ add_executable(ggraph
 
 # Include the "tests" directory
 add_subdirectory(tests)
-
-# Find and configure Google Test
-find_package(GTest REQUIRED)

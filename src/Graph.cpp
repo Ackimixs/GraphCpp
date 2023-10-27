@@ -4,6 +4,12 @@ List::Graph::Graph(int size, Type::Graph directed) : _size(size), directed(direc
     this->adjList = std::vector<std::vector<edge>>(size);
 }
 
+List::Graph::Graph(const List::Graph &graph) {
+    this->_size = graph._size;
+    this->directed = graph.directed;
+    this->adjList = graph.adjList;
+}
+
 void List::Graph::addEdge(int from, int to, double weight) {
     if (from < 0 || from > this->_size - 1) {
         throw std::invalid_argument("'from' need to be between 0 and the _size of the graph - 1");
@@ -475,24 +481,4 @@ int List::Graph::degres(int vertex) {
     }
 
     return int(this->adjList[vertex].size());
-}
-
-List::Graph::Graph(std::vector<std::vector<edge>> matrix, Type::Graph directed) {
-    this->_size = int(matrix.size());
-    this->directed = directed;
-    this->adjList = std::vector<std::vector<edge>>(this->_size);
-
-    for (int i = 0; i < this->_size; i++) {
-        for (int j = 0; j < this->_size; j++) {
-            if (matrix[i][j].second != 0) {
-                this->addEdge(i, j, matrix[i][j].second);
-            }
-        }
-    }
-}
-
-List::Graph::Graph(const List::Graph &graph) {
-    this->_size = graph._size;
-    this->directed = graph.directed;
-    this->adjList = graph.adjList;
 }
