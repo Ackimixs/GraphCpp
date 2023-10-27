@@ -7,6 +7,7 @@
 #include <iostream>
 #include <chrono>
 #include <random>
+#include <optional>
 
 namespace Type {
     enum Graph {
