@@ -160,7 +160,6 @@ List::Graph List::Graph::createRandomGraph(int numberOfVertices, Type::Graph dir
 }
 
 std::optional<std::vector<int>> List::Graph::cycle() {
-    // TODO remake everythings in that function it is completly wrong
     std::vector<Color> color = std::vector<Color>(this->_size, Color::BLUE);
     std::vector<int> parent = std::vector<int>(this->_size, -1);
     std::vector<int> cycle;
@@ -340,8 +339,6 @@ std::optional<std::pair<int, std::vector<int>>> List::Graph::path(int from, int 
 }
 
 std::optional<std::pair<int, std::vector<int>>> List::Graph::pathVisit(int v, std::vector<Color> &color, std::vector<int> &parent, std::pair<int, std::vector<int>> path, std::pair<int, int> &param) {
-    // TODO maybe BFS is better ?
-
     color[v] = Color::WHITE;
     path.first += 1;
     for (edge w : this->adjList[v]) {
@@ -354,10 +351,10 @@ std::optional<std::pair<int, std::vector<int>>> List::Graph::pathVisit(int v, st
             }
 
             auto newPath = this->pathVisit(w.first, color, parent, path, param);
-            if (newPath) {
+            if (newPath.has_value()) {
                 return newPath;
             } else {
-                vectorUtils<int>::removeElementsUntilValue(path.second, w.first);
+                path.second.pop_back();
             }
         }
     }
