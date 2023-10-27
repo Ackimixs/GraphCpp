@@ -17,8 +17,9 @@ FetchContent_MakeAvailable(googletest)
 
 add_executable(
         MyGraphTest
-        graphTest.cpp
+        graphListTest.cpp
         MatrixTest.cpp
+        graphMatrixTest.cpp
         ../src/Matrix.cpp
         ../src/Graph.cpp
 )

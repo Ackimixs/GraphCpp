@@ -2,25 +2,27 @@
 #include "../include/Matrix.h"
 
 struct SimpleMatrix : public ::testing::Test {
-    Matrix m;
+    Matrix::M m;
     SimpleMatrix() : m(2) {
-        m.add(0, 0, 1);
-        m.add(0, 1, 2);
-        m.add(1, 0, 3);
-        m.add(1, 1, 4);
+        m.set(0, 0, 1);
+        m.set(0, 1, 2);
+        m.set(1, 0, 3);
+        m.set(1, 1, 4);
     }
 };
 
+// ----------------- TESTING ADD --------------
+
 TEST_F(SimpleMatrix, add) {
 
-    Matrix secondMatrix(2);
+    Matrix::M secondMatrix(2);
 
     secondMatrix(0, 0, 1);
     secondMatrix(0, 1, 2);
     secondMatrix(1, 0, 3);
     secondMatrix(1, 1, 4);
 
-    Matrix res(2);
+    Matrix::M res(2);
 
     res(0, 0, 2);
     res(0, 1, 4);
@@ -30,15 +32,15 @@ TEST_F(SimpleMatrix, add) {
     ASSERT_TRUE(res == (m + secondMatrix));
 }
 
-TEST_F(SimpleMatrix, add_equal) {
-    Matrix secondMatrix(2);
+TEST_F(SimpleMatrix, addEqual) {
+    Matrix::M secondMatrix(2);
 
     secondMatrix(0, 0, 1);
     secondMatrix(0, 1, 2);
     secondMatrix(1, 0, 3);
     secondMatrix(1, 1, 4);
 
-    Matrix res(2);
+    Matrix::M res(2);
 
     res(0, 0, 2);
     res(0, 1, 4);
@@ -47,36 +49,38 @@ TEST_F(SimpleMatrix, add_equal) {
 
     m += secondMatrix;
 
-    ASSERT_TRUE(res == m);
+    ASSERT_EQ(res, m);
 }
 
+// ----------------- TESTING SUB --------------
+
 TEST_F(SimpleMatrix, sub) {
-    Matrix secondMatrix(2);
+    Matrix::M secondMatrix(2);
 
     secondMatrix(0, 0, 1);
     secondMatrix(0, 1, 2);
     secondMatrix(1, 0, 3);
     secondMatrix(1, 1, 4);
 
-    Matrix res(2);
+    Matrix::M res(2);
 
     res(0, 0, 0);
     res(0, 1, 0);
     res(1, 0, 0);
     res(1, 1, 0);
 
-    ASSERT_TRUE(res == (m - secondMatrix));
+    ASSERT_EQ(res, (m - secondMatrix));
 }
 
-TEST_F(SimpleMatrix, sub_equal) {
-    Matrix secondMatrix(2);
+TEST_F(SimpleMatrix, subEqual) {
+    Matrix::M secondMatrix(2);
 
     secondMatrix(0, 0, 1);
     secondMatrix(0, 1, 2);
     secondMatrix(1, 0, 3);
     secondMatrix(1, 1, 4);
 
-    Matrix res(2);
+    Matrix::M res(2);
 
     res(0, 0, 0);
     res(0, 1, 0);
@@ -85,36 +89,38 @@ TEST_F(SimpleMatrix, sub_equal) {
 
     m -= secondMatrix;
 
-    ASSERT_TRUE(res == m);
+    ASSERT_EQ(res, m);
 }
 
+// ----------------- TESTING MATRIX MULTIPLICATION --------------
+
 TEST_F(SimpleMatrix, mul) {
-    Matrix secondMatrix(2);
+    Matrix::M secondMatrix(2);
 
     secondMatrix(0, 0, 1);
     secondMatrix(0, 1, 2);
     secondMatrix(1, 0, 3);
     secondMatrix(1, 1, 4);
 
-    Matrix res(2);
+    Matrix::M res(2);
 
     res(0, 0, 7);
     res(0, 1, 10);
     res(1, 0, 15);
     res(1, 1, 22);
 
-    ASSERT_TRUE(res == (m * secondMatrix));
+    ASSERT_EQ(res, (m * secondMatrix));
 }
 
-TEST_F(SimpleMatrix, mul_equal) {
-    Matrix secondMatrix(2);
+TEST_F(SimpleMatrix, mulEqual) {
+    Matrix::M secondMatrix(2);
 
     secondMatrix(0, 0, 1);
     secondMatrix(0, 1, 2);
     secondMatrix(1, 0, 3);
     secondMatrix(1, 1, 4);
 
-    Matrix res(2);
+    Matrix::M res(2);
 
     res(0, 0, 7);
     res(0, 1, 10);
@@ -123,22 +129,22 @@ TEST_F(SimpleMatrix, mul_equal) {
 
     m *= secondMatrix;
 
-    ASSERT_TRUE(res == m);
+    ASSERT_EQ(res, m);
 }
 
-TEST_F(SimpleMatrix, mul_value) {
-    Matrix res(2);
+TEST_F(SimpleMatrix, mulValue) {
+    Matrix::M res(2);
 
     res(0, 0, 2);
     res(0, 1, 4);
     res(1, 0, 6);
     res(1, 1, 8);
 
-    ASSERT_TRUE(res == (m * 2));
+    ASSERT_EQ(res, (m * 2));
 }
 
-TEST_F(SimpleMatrix, mul_value_equal) {
-    Matrix res(2);
+TEST_F(SimpleMatrix, mulValueEqual) {
+    Matrix::M res(2);
 
     res(0, 0, 2);
     res(0, 1, 4);
@@ -147,22 +153,72 @@ TEST_F(SimpleMatrix, mul_value_equal) {
 
     m *= 2;
 
-    ASSERT_TRUE(res == m);
+    ASSERT_EQ(res, m);
 }
 
+TEST_F(SimpleMatrix, checkIdentity) {
+    Matrix::M ide = Matrix::M::identityMatrix(m.size().first);
+
+    ASSERT_EQ(m * ide, m);
+}
+
+TEST(Matrix, mulNotSameSize) {
+    Matrix::M m({4, 2});
+
+    m.set(0, 0, 0);
+    m.set(0, 1, 1);
+    m.set(1, 0, 2);
+    m.set(1, 1, 3);
+    m.set(2, 0, 4);
+    m.set(2, 1, 5);
+    m.set(3, 0, 6);
+    m.set(3, 1, 7);
+
+    Matrix::M m2({2, 3});
+
+    m.set(0, 0, 20);
+    m.set(0, 1, 15);
+    m.set(0, 2, 2);
+    m.set(1, 0, 0);
+    m.set(1, 1, 4);
+    m.set(1, 2, 61);
+
+    Matrix::M m3 = m * m2;
+
+    Matrix::M res({4, 3});
+
+    m.set(0, 0, 0);
+    m.set(0, 1, 4);
+    m.set(0, 2, 61);
+    m.set(1, 0, 40);
+    m.set(1, 1, 42);
+    m.set(1, 2, 187);
+    m.set(2, 0, 80);
+    m.set(2, 1, 80);
+    m.set(2, 2, 313);
+    m.set(3, 0, 120);
+    m.set(3, 1, 118);
+    m.set(3, 2, 439);
+
+    ASSERT_EQ(m3.size(), std::pair(4, 3));
+    ASSERT_EQ(m3, res);
+}
+
+// ----------------- TESTING POWER --------------
+
 TEST_F(SimpleMatrix, power) {
-    Matrix res(2);
+    Matrix::M res(2);
 
     res(0, 0, 37);
     res(0, 1, 54);
     res(1, 0, 81);
     res(1, 1, 118);
 
-    ASSERT_TRUE(res == (m ^ 3));
+    ASSERT_EQ(res, (m ^ 3));
 }
 
-TEST_F(SimpleMatrix, power_equal) {
-    Matrix res(2);
+TEST_F(SimpleMatrix, powerEqual) {
+    Matrix::M res(2);
 
     res(0, 0, 37);
     res(0, 1, 54);
@@ -171,41 +227,45 @@ TEST_F(SimpleMatrix, power_equal) {
 
     m ^= 3;
 
-    ASSERT_TRUE(res == m);
+    ASSERT_EQ(res, m);
 }
 
+// ----------------- TESTING EQUAL --------------
+
 TEST_F(SimpleMatrix, equal) {
-    Matrix secondMatrix(2);
+    Matrix::M secondMatrix(2);
 
     secondMatrix(0, 0, 1);
     secondMatrix(0, 1, 2);
     secondMatrix(1, 0, 3);
     secondMatrix(1, 1, 4);
 
-    ASSERT_TRUE(m == secondMatrix);
+    ASSERT_EQ(m, secondMatrix);
 }
 
-TEST_F(SimpleMatrix, not_equal) {
-    Matrix secondMatrix(2);
+TEST_F(SimpleMatrix, notEqual) {
+    Matrix::M secondMatrix(2);
 
     secondMatrix(0, 0, 1);
     secondMatrix(0, 1, 2);
     secondMatrix(1, 0, 3);
     secondMatrix(1, 1, 5);
 
-    ASSERT_TRUE(m != secondMatrix);
+    ASSERT_NE(m, secondMatrix);
 }
 
-TEST_F(SimpleMatrix, copy) {
-    Matrix secondMatrix(m);
+// ----------------- TESTING COPY --------------
 
-    ASSERT_TRUE(m == secondMatrix);
+TEST_F(SimpleMatrix, copy) {
+    Matrix::M secondMatrix(m);
+
+    ASSERT_EQ(m, secondMatrix);
 }
 
 TEST_F(SimpleMatrix, copy_equal) {
-    Matrix secondMatrix(2);
+    Matrix::M secondMatrix(2);
 
     secondMatrix = m;
 
-    ASSERT_TRUE(m == secondMatrix);
+    ASSERT_EQ(m, secondMatrix);
 }

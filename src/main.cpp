@@ -3,7 +3,7 @@
 
 int main() {
 
-//    List::Graph g = List::Graph::createRandomGraph(350);
+    List::Graph g = List::Graph::createRandomGraph(350);
 
 //    // BIPARTITE TESTER
 //    List::Graph g = List::Graph(4, Type::UNDIRECTED);
@@ -14,7 +14,7 @@ int main() {
 //    g.addEdge(3, 0);
 
 ////    CHECK LONGEST PATH => 5
-//    List::Graph g = List::Graph(18, Type::UNDIRECTED);
+//    List::Graph g = List::Graph(18, Type::DIRECTED);
 //
 //    g.addEdge(0, 1);
 //    g.addEdge(0, 2);
@@ -43,40 +43,40 @@ int main() {
 //    g.addEdge(4, 5);
 //    g.addEdge(2, 3);
 
-    List::Graph g(5);
-
-    g.addEdge(0, 1);
-    g.addEdge(0, 2);
-    g.addEdge(2, 3);
-    g.addEdge(1, 3);
-    g.addEdge(1, 4);
-
-    g.print();
-
-    auto v = g.eccentricity(3);
-
-    if (v.has_value()) {
-        std::cout << v.value().first << ", " << v.value().second << std::endl;
-    }
-
-    for (int i = 0; i < g.size(); i++) {
-        auto v = g.eccentricity(i);
-        if (v.has_value()) {
-            std::cout << i << ", " << v.value().first << ", " << v.value().second << std::endl;
-        }
-    }
-
-    auto r = g.radius();
-
-    if (r.has_value()) {
-        std::cout << r.value().first << " : " << r.value().second.first << " -> " << r.value().second.second << std::endl;
-    }
-
-    auto d = g.diameter();
-
-    if (d.has_value()) {
-        std::cout << d.value().first << " : " << d.value().second.first << " -> " << d.value().second.second << std::endl;
-    }
+//    List::Graph g(5);
+//
+//    g.addEdge(0, 1);
+//    g.addEdge(0, 2);
+//    g.addEdge(2, 3);
+//    g.addEdge(1, 3);
+//    g.addEdge(1, 4);
+//
+//    g.print();
+//
+//    auto v = g.eccentricity(3);
+//
+//    if (v.has_value()) {
+//        std::cout << v.value().first << ", " << v.value().second << std::endl;
+//    }
+//
+//    for (int i = 0; i < g.size(); i++) {
+//        auto v = g.eccentricity(i);
+//        if (v.has_value()) {
+//            std::cout << i << ", " << v.value().first << ", " << v.value().second << std::endl;
+//        }
+//    }
+//
+//    auto r = g.radius();
+//
+//    if (r.has_value()) {
+//        std::cout << r.value().first << " : " << r.value().second.first << " -> " << r.value().second.second << std::endl;
+//    }
+//
+//    auto d = g.diameter();
+//
+//    if (d.has_value()) {
+//        std::cout << d.value().first << " : " << d.value().second.first << " -> " << d.value().second.second << std::endl;
+//    }
 
 
 //
@@ -125,6 +125,10 @@ int main() {
 //    } else {
 //        std::cout << "no path" << std::endl;
 //    }
+
+//    Matrix ide = Matrix::identityMatrix(5);
+//
+//    ide.print();
 
     return 0;
 }

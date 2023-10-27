@@ -1,18 +1,18 @@
 #include <gtest/gtest.h>
 #include "../include/Graph.h"
 
-struct SimpleGraph : public ::testing::Test {
-    List::Graph g;
-    SimpleGraph() : g(4) {
+struct SimpleGraphMatrix : public ::testing::Test {
+    Matrix::Graph g;
+    SimpleGraphMatrix() : g(4) {
         g.addEdge(0, 1);
         g.addEdge(1, 2);
         g.addEdge(2, 3);
     }
 };
 
-struct ComplexGraph : public ::testing::Test {
-    List::Graph g;
-    ComplexGraph() : g(18) {
+struct ComplexGraphMatrix : public ::testing::Test {
+    Matrix::Graph g;
+    ComplexGraphMatrix() : g(18) {
         g.addEdge(0, 1);
         g.addEdge(0, 2);
         g.addEdge(0, 4);
@@ -33,31 +33,30 @@ struct ComplexGraph : public ::testing::Test {
     }
 };
 
-struct SimpleGraphDirected : public ::testing::Test {
-    List::Graph g;
-    SimpleGraphDirected() : g(4, Type::DIRECTED) {
+struct SimpleGraphMatrixDirected : public ::testing::Test {
+    Matrix::Graph g;
+    SimpleGraphMatrixDirected() : g(4, Type::DIRECTED) {
         g.addEdge(0, 1);
         g.addEdge(1, 2);
         g.addEdge(2, 3);
     }
 };
 
-struct RandomGraph : public ::testing::Test {
-    List::Graph g;
-    RandomGraph() : g(List::Graph::createRandomGraph(350, Type::UNDIRECTED, .2)) {}
+struct RandomGraphMatrix : public ::testing::Test {
+    Matrix::Graph g;
+    RandomGraphMatrix() : g(Matrix::Graph::createRandomGraph(350, Type::UNDIRECTED, .2)) {}
 };
-
 
 // ----------------- TESTING BFS --------------
 
-TEST_F(SimpleGraph, GrapBFS) {
+TEST_F(SimpleGraphMatrix, GrapBFS) {
 
     std::vector<int> res = {0, 1, 2, 3};
 
     ASSERT_EQ(g.BFS(), res);
 }
 
-TEST_F(RandomGraph, GraphBFS_allEdge) {
+TEST_F(RandomGraphMatrix, GraphBFS_allEdge) {
 
     auto res = g.BFS();
 
@@ -65,7 +64,7 @@ TEST_F(RandomGraph, GraphBFS_allEdge) {
 }
 
 
-TEST_F(ComplexGraph, GraphBFS_Length) {
+TEST_F(ComplexGraphMatrix, GraphBFS_Length) {
 
     auto res = g.BFS();
 
@@ -74,28 +73,28 @@ TEST_F(ComplexGraph, GraphBFS_Length) {
 
 // ----------------- TESTING DFS --------------
 
-TEST_F(SimpleGraph, GraphDFS) {
+TEST_F(SimpleGraphMatrix, GraphDFS) {
 
     std::vector<int> res = {0, 1, 2, 3};
 
     ASSERT_EQ(g.BFS(), res);
 }
 
-TEST_F(SimpleGraph, GraphDFS_Stack) {
+TEST_F(SimpleGraphMatrix, GraphDFS_Stack) {
 
     std::vector<int> res = {0, 1, 2, 3};
 
     ASSERT_EQ(g.BFS(), res);
 }
 
-TEST_F(RandomGraph, GraphDFS_allEdge) {
+TEST_F(RandomGraphMatrix, GraphDFS_allEdge) {
 
     auto res = g.BFS();
 
     ASSERT_EQ(res.size(), g.size());
 }
 
-TEST_F(RandomGraph, GraphDFS_Stack_allEdge) {
+TEST_F(RandomGraphMatrix, GraphDFS_Stack_allEdge) {
 
     auto res = g.BFS();
 
@@ -105,20 +104,20 @@ TEST_F(RandomGraph, GraphDFS_Stack_allEdge) {
 
 // ----------------- TESTING PATH --------------
 
-TEST_F(RandomGraph, GraphPath) {
+TEST_F(RandomGraphMatrix, GraphPath) {
     auto res = g.path(0, 3);
 
     ASSERT_TRUE(res.has_value());
 }
 
-TEST_F(SimpleGraph, GraphPath) {
+TEST_F(SimpleGraphMatrix, GraphPath) {
     auto res = g.path(0, 3);
 
     ASSERT_EQ(res.value().first, 3);
     ASSERT_EQ(res.value().second, std::vector<int>({0, 1, 2, 3}));
 }
 
-TEST_F(SimpleGraph, GraphNoPath) {
+TEST_F(SimpleGraphMatrix, GraphNoPath) {
     g.removeEdge(1, 2);
 
     auto res = g.path(0, 3);
@@ -126,7 +125,7 @@ TEST_F(SimpleGraph, GraphNoPath) {
     ASSERT_FALSE(res.has_value());
 }
 
-TEST_F(ComplexGraph, GraphNotPath) {
+TEST_F(ComplexGraphMatrix, GraphNotPath) {
 
     g.removeEdge(10, 11);
 
@@ -135,7 +134,7 @@ TEST_F(ComplexGraph, GraphNotPath) {
     ASSERT_FALSE(res.has_value());
 }
 
-TEST_F(SimpleGraphDirected, GraphLongestPath) {
+TEST_F(SimpleGraphMatrixDirected, GraphLongestPath) {
 
     auto res = g.longestPath();
 
@@ -144,7 +143,7 @@ TEST_F(SimpleGraphDirected, GraphLongestPath) {
     ASSERT_EQ(res.second.second, 3);
 }
 
-TEST_F(SimpleGraph, GraphDistanceFromSource) {
+TEST_F(SimpleGraphMatrix, GraphDistanceFromSource) {
     auto res = g.distanceFromSource();
 
     ASSERT_EQ(res, std::vector<double>({0, 1, 2, 3}));
@@ -153,21 +152,21 @@ TEST_F(SimpleGraph, GraphDistanceFromSource) {
 
 // ----------------- TESTING CYCLE --------------
 
-TEST_F(SimpleGraph, GraphNoCycle) {
+TEST_F(SimpleGraphMatrix, GraphNoCycle) {
 
     auto res = g.cycle();
 
     ASSERT_FALSE(res.has_value());
 }
 
-TEST_F(ComplexGraph, GrophNoCycle) {
+TEST_F(ComplexGraphMatrix, GrophNoCycle) {
     auto res = g.cycle();
 
     ASSERT_FALSE(res.has_value());
 }
 
-TEST(Graph, GraphCycle) {
-    List::Graph g(6);
+TEST(GraphMatrix, GraphCycle) {
+    Matrix::Graph g(6);
 
     g.addEdge(0,1);
     g.addEdge(0, 2);
@@ -184,11 +183,11 @@ TEST(Graph, GraphCycle) {
 
 // ----------------- TESTING BIPARTITE --------------
 
-TEST_F(SimpleGraph, GraphIsBipartite) {
+TEST_F(SimpleGraphMatrix, GraphIsBipartite) {
     ASSERT_TRUE(g.isBipartite());
 }
 
-TEST_F(SimpleGraph, GraphIsNotBipartite) {
+TEST_F(SimpleGraphMatrix, GraphIsNotBipartite) {
     g.addEdge(1, 3);
 
     g.addEdge(0, 2);
@@ -197,8 +196,8 @@ TEST_F(SimpleGraph, GraphIsNotBipartite) {
 }
 
 // ----------------- TESTING EULERIAN CYCLE --------------
-TEST(Graph, GraphEulerianCycle) {
-    List::Graph g(6);
+TEST(GraphMatrix, GraphEulerianCycle) {
+    Matrix::Graph g(6);
 
     g.addEdge(0, 1);
     g.addEdge(0, 2);
@@ -216,8 +215,8 @@ TEST(Graph, GraphEulerianCycle) {
     ASSERT_TRUE(g.eulerianCycle());
 }
 
-TEST(Graph, GraphEulerianCycleNot) {
-    List::Graph g(6);
+TEST(GraphMatrix, GraphEulerianCycleNot) {
+    Matrix::Graph g(6);
 
     g.addEdge(0,1);
     g.addEdge(0, 2);
@@ -229,8 +228,8 @@ TEST(Graph, GraphEulerianCycleNot) {
 }
 
 // ----------------- TESTING BLACK HOLE --------------
-TEST(Graph, GraphBlackHole) {
-    List::Graph g(6, Type::Graph::DIRECTED);
+TEST(GraphMatrix, GraphBlackHole) {
+    Matrix::Graph g(5, Type::Graph::DIRECTED);
 
     g.addEdge(1, 0);
     g.addEdge(2, 0);
@@ -243,7 +242,7 @@ TEST(Graph, GraphBlackHole) {
 
 // ----------------- TESTING ECCENTRICITY / RADIUS / DIAMETER --------------
 
-TEST_F(SimpleGraph, GraphEccentricity) {
+TEST_F(SimpleGraphMatrix, GraphEccentricity) {
     auto res = g.eccentricity(0);
 
     ASSERT_TRUE(res.has_value());
@@ -251,21 +250,21 @@ TEST_F(SimpleGraph, GraphEccentricity) {
     ASSERT_EQ(res.value().second, 3);
 }
 
-TEST_F(SimpleGraph, GraphRadius) {
+TEST_F(SimpleGraphMatrix, GraphRadius) {
     auto res = g.radius();
 
     ASSERT_TRUE(res.has_value());
     ASSERT_EQ(res.value().first, 2);
 }
 
-TEST_F(SimpleGraph, GraphDiameter) {
+TEST_F(SimpleGraphMatrix, GraphDiameter) {
     auto res = g.diameter();
 
     ASSERT_TRUE(res.has_value());
     ASSERT_EQ(res.value().first, 3);
 }
 
-TEST_F(ComplexGraph, GraphEccentricity) {
+TEST_F(ComplexGraphMatrix, GraphEccentricity) {
     auto res = g.eccentricity(0);
 
     ASSERT_TRUE(res.has_value());
@@ -273,7 +272,7 @@ TEST_F(ComplexGraph, GraphEccentricity) {
     ASSERT_EQ(res.value().second, 12);
 }
 
-TEST_F(ComplexGraph, GraphRadius) {
+TEST_F(ComplexGraphMatrix, GraphRadius) {
     auto res = g.radius();
 
     ASSERT_TRUE(res.has_value());
@@ -282,7 +281,7 @@ TEST_F(ComplexGraph, GraphRadius) {
     ASSERT_EQ(res.value().second.second, 12);
 }
 
-TEST_F(ComplexGraph, GraphDiameter) {
+TEST_F(ComplexGraphMatrix, GraphDiameter) {
     auto res = g.diameter();
 
     ASSERT_TRUE(res.has_value());
