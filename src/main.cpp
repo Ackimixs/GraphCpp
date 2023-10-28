@@ -1,4 +1,3 @@
-#include <gtest/gtest.h>
 #include "../include/Graph.h"
 #include "../include/Matrix.h"
 
