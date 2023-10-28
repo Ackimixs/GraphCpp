@@ -147,7 +147,7 @@ int main(int argv, char **argc) {
 
 void SupraRandomGraph() {
 
-    auto g = List::Graph::createRandomGraph(20000, Type::UNDIRECTED, .01);
+    auto g = List::Graph::createRandomGraph(10000, Type::UNDIRECTED, .01);
 
     std::cout << "Graph created" << std::endl;
 
