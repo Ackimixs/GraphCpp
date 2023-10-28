@@ -229,11 +229,18 @@ namespace Matrix {
         std::optional<std::pair<int, std::vector<int>>> pathVisit(int v, std::vector<Color> &color, std::vector<int> &parent, std::pair<int, std::vector<int>> path, std::pair<int, int> &param);
 
     public:
+        /**
+         * @brief Create a graph
+         * @param n -> the size of the graph
+         * @param directed -> the type of the graph DIRECTED or UNDIRECTED, default UNDIRECTED
+         */
         Graph(int n, Type::Graph directed = Type::Graph::UNDIRECTED);
 
+        /**
+         * @brief Create a graph from a matrix
+         * @param graph -> graph to copie
+         */
         Graph(const Graph& graph);
-
-        ~Graph();
 
         /**
          * @brief Create a random graph
@@ -245,11 +252,23 @@ namespace Matrix {
          */
         static Matrix::Graph createRandomGraph(int numberOfVertices, Type::Graph directed = Type::Graph::UNDIRECTED, double edgeProbability = 0.5, bool includeRandomWeight = false);
 
+        ~Graph();
 
         int size();
 
+        /**
+         * @brief Add an edge to the graph
+         * @param from -> the starting point
+         * @param to -> the ending point
+         * @param weight -> the weight of the edge
+         */
         void addEdge(int from, int to, int weight = 1);
 
+        /**
+         * @brief Remove an edge from the graph (hard complexity so use it carefully)
+         * @param from -> the starting point
+         * @param to -> the ending point
+         */
         void removeEdge(int from, int to);
 
         /**
@@ -391,7 +410,7 @@ public:
         return std::count(vec.begin(), vec.end(), value);
     }
 
-    static int sumOfVector(std::vector<int> vec) {
+    static T sumOfVector(std::vector<T> vec) {
         int sum = 0;
         for (auto i : vec) {
             sum += i;

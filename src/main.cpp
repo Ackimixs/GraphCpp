@@ -1,9 +1,20 @@
+#include <gtest/gtest.h>
 #include "../include/Graph.h"
 #include "../include/Matrix.h"
 
-int main() {
+void SupraRandomGraph();
 
-    List::Graph g = List::Graph::createRandomGraph(350);
+int main(int argv, char **argc) {
+
+    for (int i = 0; i < argv; i++) {
+        auto arg = std::string(argc[i]);
+        if (arg == "--run-supra-random-graph") {
+            SupraRandomGraph();
+            return 0;
+        }
+    }
+
+//    List::Graph g = List::Graph::createRandomGraph(2000, Type::UNDIRECTED, .01);
 
 //    // BIPARTITE TESTER
 //    List::Graph g = List::Graph(4, Type::UNDIRECTED);
@@ -131,4 +142,102 @@ int main() {
 //    ide.print();
 
     return 0;
+}
+
+
+
+void SupraRandomGraph() {
+
+    auto g = List::Graph::createRandomGraph(50000, Type::UNDIRECTED, .01);
+
+    std::cout << "Graph created" << std::endl;
+
+    std::cout << " ---- Graph Print ---- " << std::endl;
+
+    g.print();
+
+    std::cout << " ---- Graph BFS ---- " << std::endl;
+
+    auto bfs = g.BFS();
+
+    for (auto i : bfs) {
+        std::cout << i << " ";
+    }
+    std::cout << std::endl;
+
+    std::cout << " ---- Graph DFS ---- " << std::endl;
+
+    auto dfs = g.DFS();
+
+    for (auto i : dfs) {
+        std::cout << i << " ";
+    }
+    std::cout << std::endl;
+
+    std::cout << " ---- Graph DFS Stack ---- " << std::endl;
+
+    auto dfsStack = g.DFS_stack();
+
+    for (auto i : dfsStack) {
+        std::cout << i << " ";
+    }
+    std::cout << std::endl;
+
+    std::cout << " ---- Graph Bipartite ---- " << std::endl;
+
+    std::cout << (g.isBipartite() ? "The graph is bipartite (almost impossible)" : "Graph is not bipartite") << std::endl;
+
+    std::cout << " ---- Graph Cycle ---- " << std::endl;
+
+    auto cycle = g.cycle();
+
+    if (cycle.has_value()) {
+        for (auto i : cycle.value()) {
+            std::cout << i << ", ";
+        }
+        std::cout << std::endl;
+    } else {
+        std::cout << "No cycle !" << std::endl;
+    }
+
+    std::cout << " ---- Graph Radius ---- " << std::endl;
+
+    auto radius = g.radius();
+
+    if (radius.has_value()) {
+        std::cout << "Radius: " << radius.value().first << " from " << radius.value().second.first << " -> " << radius.value().second.second << std::endl;
+    } else {
+        std::cout << "No radius !" << std::endl;
+    }
+
+    std::cout << " ---- Graph Diameter ---- " << std::endl;
+
+    auto diameter = g.diameter();
+
+    if (diameter.has_value()) {
+        std::cout << "Diameter: " << diameter.value().first << " from " << diameter.value().second.first << " -> " << diameter.value().second.second << std::endl;
+    } else {
+        std::cout << "No diameter !" << std::endl;
+    }
+
+    std::cout << " ---- Graph Distance From Source ---- " << std::endl;
+
+    auto distanceFromSource = g.distanceFromSource();
+
+    for (int i = 0; i < distanceFromSource.size(); i++) {
+        std::cout << i << " : " << distanceFromSource[i] << std::endl;
+    }
+
+    std::cout << std::endl;
+
+    std::cout << " ---- Graph Path ---- " << std::endl;
+
+    auto path = g.path(0, 3);
+
+    if (path.has_value()) {
+        std::cout << "Path length: " << path.value().first << " from " << path.value().second[0] << " -> " << path.value().second[path.value().second.size() - 1] << std::endl;
+    } else {
+        std::cout << "No path !" << std::endl;
+    }
+
 }
