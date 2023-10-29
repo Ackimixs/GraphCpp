@@ -18,6 +18,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: check version
+      run: cmake --version && g++ --version
+
     - name: Configure CMake
       working-directory: ${{github.workspace}}/tests
 
