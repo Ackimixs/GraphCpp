@@ -386,7 +386,7 @@ std::optional<std::pair<int, std::vector<int>>> List::Graph::pathVisitBFS(int v,
                 if (z.first == param.second) {
                     path.second = {};
                     auto tmp = z.first;
-                    while (tmp != param.first) {
+                    while (tmp != -1) {
                         path.second.insert(path.second.begin(), tmp);
                         tmp = parent[tmp];
                     }
