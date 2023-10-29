@@ -21,7 +21,8 @@ add_executable(
         MatrixTest.cpp
         graphMatrixTest.cpp
         ../src/Matrix.cpp
-        ../src/Graph.cpp
+        ../src/ListGraph.cpp
+        ../src/MatrixGraph.cpp
 )
 target_link_libraries(
         MyGraphTest

@@ -1,4 +1,4 @@
-#include "../include/Graph.h"
+#include "../include/ListGraph.h"
 #include "../include/Matrix.h"
 
 void SupraRandomGraph();
@@ -12,6 +12,29 @@ int main(int argv, char **argc) {
             return 0;
         }
     }
+
+//    List::Graph g(6);
+//
+//    g.addEdge(0, 1);
+//    g.addEdge(1, 2);
+//    g.addEdge(2, 3);
+//    g.addEdge(3, 4);
+//    g.addEdge(0, 5);
+//    g.addEdge(4, 5);
+//
+//    auto path = g.path(0, 4, false);
+//
+//    auto path2 = g.path(0, 3, false);
+//
+//    auto path3 = g.path(0, 4, true);
+//
+//    auto path4 = g.path(0, 3, true);
+//
+//    auto distanceFromS = g.distanceFromSource();
+//
+//    for (auto i : distanceFromS) {
+//        std::cout << i << ", ";
+//    }
 
 //    List::Graph g = List::Graph::createRandomGraph(2000, Type::UNDIRECTED, .01);
 

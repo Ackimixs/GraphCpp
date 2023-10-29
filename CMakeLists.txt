@@ -8,8 +8,9 @@ include_directories(include)
 
 add_executable(ggraph
         src/main.cpp
-        src/Graph.cpp
+        src/ListGraph.cpp
         src/Matrix.cpp
+        src/MatrixGraph.cpp
 )
 
 # Include the "tests" directory

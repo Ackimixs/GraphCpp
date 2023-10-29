@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "../include/Graph.h"
+#include "../include/MatrixGraph.h"
 
 struct SimpleGraphMatrix : public ::testing::Test {
     Matrix::Graph g;

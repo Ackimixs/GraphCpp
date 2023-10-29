@@ -1,7 +1,7 @@
 #pragma once
 
-#include <stdexcept>
-#include <iostream>
+#include "utils.h"
+
 namespace Matrix {
     class M {
     protected:
@@ -34,7 +34,7 @@ namespace Matrix {
 
         void set(int row, int col, int value);
 
-        [[nodiscard]] std::pair<int, int> size() const;
+        virtual std::pair<int, int> size() const;
 
         int operator()(int row, int col) const;
 
