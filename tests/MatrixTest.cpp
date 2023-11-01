@@ -17,17 +17,21 @@ TEST_F(SimpleMatrix, add) {
 
     Matrix::M<2, 2, int> secondMatrix;
 
-    secondMatrix(0, 0, 1);
-    secondMatrix(0, 1, 2);
-    secondMatrix(1, 0, 3);
-    secondMatrix(1, 1, 4);
+    int data[] = {
+            1, 2,
+            3, 4
+    };
+
+    secondMatrix = data;
 
     Matrix::M<2, 2, int> res;
 
-    res(0, 0, 2);
-    res(0, 1, 4);
-    res(1, 0, 6);
-    res(1, 1, 8);
+    int data2[] = {
+            2, 4,
+            6, 8
+    };
+
+    res = data2;
 
     ASSERT_EQ(res, (m + secondMatrix));
 }
@@ -35,17 +39,21 @@ TEST_F(SimpleMatrix, add) {
 TEST_F(SimpleMatrix, addEqual) {
     Matrix::M<2, 2, int> secondMatrix;
 
-    secondMatrix(0, 0, 1);
-    secondMatrix(0, 1, 2);
-    secondMatrix(1, 0, 3);
-    secondMatrix(1, 1, 4);
+    int data[] = {
+            1, 2,
+            3, 4
+    };
+
+    secondMatrix = data;
 
     Matrix::M<2, 2, int> res;
 
-    res(0, 0, 2);
-    res(0, 1, 4);
-    res(1, 0, 6);
-    res(1, 1, 8);
+    int data2[] = {
+            2, 4,
+            6, 8
+    };
+
+    res = data2;
 
     m += secondMatrix;
 
@@ -57,17 +65,21 @@ TEST_F(SimpleMatrix, addEqual) {
 TEST_F(SimpleMatrix, sub) {
     Matrix::M<2, 2, int> secondMatrix;
 
-    secondMatrix(0, 0, 1);
-    secondMatrix(0, 1, 2);
-    secondMatrix(1, 0, 3);
-    secondMatrix(1, 1, 4);
+    int data[] = {
+            1, 2,
+            3, 4
+    };
+
+    secondMatrix = data;
 
     Matrix::M<2, 2, int> res;
 
-    res(0, 0, 0);
-    res(0, 1, 0);
-    res(1, 0, 0);
-    res(1, 1, 0);
+    int data2[] = {
+            0, 0,
+            0,0
+    };
+
+    res = data2;
 
     ASSERT_EQ(res, (m - secondMatrix));
 }
@@ -75,17 +87,21 @@ TEST_F(SimpleMatrix, sub) {
 TEST_F(SimpleMatrix, subEqual) {
     Matrix::M<2, 2, int> secondMatrix;
 
-    secondMatrix(0, 0, 1);
-    secondMatrix(0, 1, 2);
-    secondMatrix(1, 0, 3);
-    secondMatrix(1, 1, 4);
+    int data[] = {
+            1, 2,
+            3, 4
+    };
+
+    secondMatrix = data;
 
     Matrix::M<2, 2, int> res;
 
-    res(0, 0, 0);
-    res(0, 1, 0);
-    res(1, 0, 0);
-    res(1, 1, 0);
+    int data2[] = {
+            0, 0,
+            0, 0
+    };
+
+    res = data2;
 
     m -= secondMatrix;
 
@@ -97,17 +113,21 @@ TEST_F(SimpleMatrix, subEqual) {
 TEST_F(SimpleMatrix, mul) {
     Matrix::M<2, 2, int> secondMatrix;
 
-    secondMatrix(0, 0, 1);
-    secondMatrix(0, 1, 2);
-    secondMatrix(1, 0, 3);
-    secondMatrix(1, 1, 4);
+    int data[] = {
+            1, 2,
+            3, 4
+    };
+
+    secondMatrix = data;
 
     Matrix::M<2, 2, int> res;
 
-    res(0, 0, 7);
-    res(0, 1, 10);
-    res(1, 0, 15);
-    res(1, 1, 22);
+    int data2[] = {
+            7, 10,
+            15, 22
+    };
+
+    res = data2;
 
     ASSERT_EQ(res, (m * secondMatrix));
 }
@@ -115,17 +135,21 @@ TEST_F(SimpleMatrix, mul) {
 TEST_F(SimpleMatrix, mulEqual) {
     Matrix::M<2, 2, int> secondMatrix;
 
-    secondMatrix(0, 0, 1);
-    secondMatrix(0, 1, 2);
-    secondMatrix(1, 0, 3);
-    secondMatrix(1, 1, 4);
+    int data[] = {
+            1, 2,
+            3, 4
+    };
+
+    secondMatrix = data;
 
     Matrix::M<2, 2, int> res;
 
-    res(0, 0, 7);
-    res(0, 1, 10);
-    res(1, 0, 15);
-    res(1, 1, 22);
+    int data2[] = {
+            7, 10,
+            15, 22
+    };
+
+    res = data2;
 
     m *= secondMatrix;
 
@@ -135,10 +159,12 @@ TEST_F(SimpleMatrix, mulEqual) {
 TEST_F(SimpleMatrix, mulValue) {
     Matrix::M<2, 2, int> res;
 
-    res(0, 0, 2);
-    res(0, 1, 4);
-    res(1, 0, 6);
-    res(1, 1, 8);
+    int data2[] = {
+            2, 4,
+            6, 8
+    };
+
+    res = data2;
 
     ASSERT_EQ(res, (m * 2));
 }
@@ -146,10 +172,12 @@ TEST_F(SimpleMatrix, mulValue) {
 TEST_F(SimpleMatrix, mulValueEqual) {
     Matrix::M<2, 2, int> res;
 
-    res(0, 0, 2);
-    res(0, 1, 4);
-    res(1, 0, 6);
-    res(1, 1, 8);
+    int data2[] = {
+            2, 4,
+            6, 8
+    };
+
+    res = data2;
 
     m *= 2;
 
@@ -165,40 +193,36 @@ TEST_F(SimpleMatrix, checkIdentity) {
 TEST(Matrix, mulNotSameSize) {
     Matrix::M<4, 2, int> m;
 
-    m.set(0, 0, 0);
-    m.set(0, 1, 1);
-    m.set(1, 0, 2);
-    m.set(1, 1, 3);
-    m.set(2, 0, 4);
-    m.set(2, 1, 5);
-    m.set(3, 0, 6);
-    m.set(3, 1, 7);
+    int data[] = {
+            0, 1,
+            2, 3,
+            4, 5,
+            6, 7
+    };
+
+    m = data;
 
     Matrix::M<2, 3, int> m2;
 
-    m.set(0, 0, 20);
-    m.set(0, 1, 15);
-    m.set(0, 2, 2);
-    m.set(1, 0, 0);
-    m.set(1, 1, 4);
-    m.set(1, 2, 61);
+    int data2[] = {
+            20, 15, 2,
+            0, 4, 61
+    };
+
+    m2 = data2;
 
     Matrix::M m3 = m * m2;
 
     Matrix::M<4, 3, int> res;
 
-    m.set(0, 0, 0);
-    m.set(0, 1, 4);
-    m.set(0, 2, 61);
-    m.set(1, 0, 40);
-    m.set(1, 1, 42);
-    m.set(1, 2, 187);
-    m.set(2, 0, 80);
-    m.set(2, 1, 80);
-    m.set(2, 2, 313);
-    m.set(3, 0, 120);
-    m.set(3, 1, 118);
-    m.set(3, 2, 439);
+    int data3[] = {
+            0, 4, 61,
+            40, 42, 187,
+            80, 80, 313,
+            120, 118, 439
+    };
+
+    res = data3;
 
     ASSERT_EQ(m3, res);
 }
@@ -208,10 +232,12 @@ TEST(Matrix, mulNotSameSize) {
 TEST_F(SimpleMatrix, power) {
     Matrix::M<2, 2, int> res;
 
-    res(0, 0, 37);
-    res(0, 1, 54);
-    res(1, 0, 81);
-    res(1, 1, 118);
+    int data2[] = {
+            37, 54,
+            81, 118
+    };
+
+    res = data2;
 
     ASSERT_EQ(res, (m ^ 3));
 }
@@ -219,10 +245,12 @@ TEST_F(SimpleMatrix, power) {
 TEST_F(SimpleMatrix, powerEqual) {
     Matrix::M<2, 2, int> res;
 
-    res(0, 0, 37);
-    res(0, 1, 54);
-    res(1, 0, 81);
-    res(1, 1, 118);
+    int data[] = {
+            37, 54,
+            81, 118
+    };
+
+    res = data;
 
     m ^= 3;
 
@@ -234,10 +262,12 @@ TEST_F(SimpleMatrix, powerEqual) {
 TEST_F(SimpleMatrix, equal) {
     Matrix::M<2, 2, int> secondMatrix;
 
-    secondMatrix(0, 0, 1);
-    secondMatrix(0, 1, 2);
-    secondMatrix(1, 0, 3);
-    secondMatrix(1, 1, 4);
+    int data[] = {
+            1, 2,
+            3, 4
+    };
+
+    secondMatrix = data;
 
     ASSERT_EQ(m, secondMatrix);
 }
@@ -245,10 +275,12 @@ TEST_F(SimpleMatrix, equal) {
 TEST_F(SimpleMatrix, notEqual) {
     Matrix::M<2, 2, int> secondMatrix;
 
-    secondMatrix(0, 0, 1);
-    secondMatrix(0, 1, 2);
-    secondMatrix(1, 0, 3);
-    secondMatrix(1, 1, 5);
+    int data[] = {
+            1, 2,
+            3, 5
+    };
+
+    secondMatrix = data;
 
     ASSERT_NE(m, secondMatrix);
 }

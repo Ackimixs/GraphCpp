@@ -308,7 +308,9 @@ Matrix::M<R, C, T>& Matrix::M<R, C, T>::operator=(T v) {
 template<size_t R, size_t C, typename T>
 Matrix::M<R, C, T>& Matrix::M<R, C, T>::operator=(const T *data_array) {
     this->fill(0);
-    _m = data_array;
+    for (size_t i = 0; i < R * C; i++) {
+        _m[i] = data_array[i];
+    }
     return *this;
 }
 
