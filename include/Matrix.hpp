@@ -440,7 +440,7 @@ Matrix::M<R, C, T>::M(const T *data) : _m() {
 }
 
 template<size_t R, size_t C, typename T>
-Matrix::M<R, C, T>::M(const Matrix::adjacentMatrix<R, C, T> &adjMatrix) {
+Matrix::M<R, C, T>::M(const Matrix::adjacentMatrix<R, T> &adjMatrix) {
     (*this) = adjMatrix;
 }
 
