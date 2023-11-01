@@ -1,4 +1,4 @@
-#include "../include/ListGraph.h"
+#include "../include/ListGraph.hpp"
 
 List::Graph::Graph(int size, Type::Graph directed) : _size(size), _d(directed) {
     this->adjList = std::vector<std::vector<edge>>(size);

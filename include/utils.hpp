@@ -1,15 +1,8 @@
 #pragma once
 
+#include <utility>
 #include <vector>
-#include <queue>
-#include <stack>
-
 #include <algorithm>
-#include <iostream>
-#include <stdexcept>
-#include <optional>
-#include <random>
-
 
 namespace Type {
     enum Graph {

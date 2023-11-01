@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
-#include "../include/MatrixGraph.h"
+#include "../include/MatrixGraph.hpp"
 
 struct SimpleGraphMatrix : public ::testing::Test {
-    Matrix::Graph g;
-    SimpleGraphMatrix() : g(4) {
+    Matrix::Graph<4, double> g;
+    SimpleGraphMatrix() : g() {
         g.addEdge(0, 1);
         g.addEdge(1, 2);
         g.addEdge(2, 3);
@@ -11,8 +11,8 @@ struct SimpleGraphMatrix : public ::testing::Test {
 };
 
 struct ComplexGraphMatrix : public ::testing::Test {
-    Matrix::Graph g;
-    ComplexGraphMatrix() : g(18) {
+    Matrix::Graph<18, double> g;
+    ComplexGraphMatrix() : g() {
         g.addEdge(0, 1);
         g.addEdge(0, 2);
         g.addEdge(0, 4);
@@ -34,8 +34,8 @@ struct ComplexGraphMatrix : public ::testing::Test {
 };
 
 struct SimpleGraphMatrixDirected : public ::testing::Test {
-    Matrix::Graph g;
-    SimpleGraphMatrixDirected() : g(4, Type::DIRECTED) {
+    Matrix::Graph<4, double> g;
+    SimpleGraphMatrixDirected() : g(Type::DIRECTED) {
         g.addEdge(0, 1);
         g.addEdge(1, 2);
         g.addEdge(2, 3);
@@ -43,15 +43,15 @@ struct SimpleGraphMatrixDirected : public ::testing::Test {
 };
 
 struct RandomGraphMatrix : public ::testing::Test {
-    Matrix::Graph g;
-    RandomGraphMatrix() : g(Matrix::Graph::createRandomGraph(350, Type::UNDIRECTED, .2)) {}
+    Matrix::Graph<350, double> g;
+    RandomGraphMatrix() : g(Matrix::Graph<350, double>::createRandomGraph(Type::UNDIRECTED, .2)) {}
 };
 
 // ----------------- TESTING BFS --------------
 
 TEST_F(SimpleGraphMatrix, GrapBFS) {
 
-    std::vector<int> res = {0, 1, 2, 3};
+    std::vector<double> res = {0, 1, 2, 3};
 
     ASSERT_EQ(g.BFS(), res);
 }
@@ -75,14 +75,14 @@ TEST_F(ComplexGraphMatrix, GraphBFS_Length) {
 
 TEST_F(SimpleGraphMatrix, GraphDFS) {
 
-    std::vector<int> res = {0, 1, 2, 3};
+    std::vector<double> res = {0, 1, 2, 3};
 
     ASSERT_EQ(g.BFS(), res);
 }
 
 TEST_F(SimpleGraphMatrix, GraphDFS_Stack) {
 
-    std::vector<int> res = {0, 1, 2, 3};
+    std::vector<double> res = {0, 1, 2, 3};
 
     ASSERT_EQ(g.BFS(), res);
 }
@@ -114,7 +114,7 @@ TEST_F(SimpleGraphMatrix, GraphPath) {
     auto res = g.path(0, 3);
 
     ASSERT_EQ(res.value().first, 3);
-    ASSERT_EQ(res.value().second, std::vector<int>({0, 1, 2, 3}));
+    ASSERT_EQ(res.value().second, std::vector<double>({0, 1, 2, 3}));
 }
 
 TEST_F(SimpleGraphMatrix, GraphNoPath) {
@@ -166,7 +166,7 @@ TEST_F(ComplexGraphMatrix, GrophNoCycle) {
 }
 
 TEST(GraphMatrix, GraphCycle) {
-    Matrix::Graph g(6);
+    Matrix::Graph<6> g;
 
     g.addEdge(0,1);
     g.addEdge(0, 2);
@@ -197,7 +197,7 @@ TEST_F(SimpleGraphMatrix, GraphIsNotBipartite) {
 
 // ----------------- TESTING EULERIAN CYCLE --------------
 TEST(GraphMatrix, GraphEulerianCycle) {
-    Matrix::Graph g(6);
+    Matrix::Graph<6> g;
 
     g.addEdge(0, 1);
     g.addEdge(0, 2);
@@ -216,7 +216,7 @@ TEST(GraphMatrix, GraphEulerianCycle) {
 }
 
 TEST(GraphMatrix, GraphEulerianCycleNot) {
-    Matrix::Graph g(6);
+    Matrix::Graph<6> g;
 
     g.addEdge(0,1);
     g.addEdge(0, 2);
@@ -229,7 +229,7 @@ TEST(GraphMatrix, GraphEulerianCycleNot) {
 
 // ----------------- TESTING BLACK HOLE --------------
 TEST(GraphMatrix, GraphBlackHole) {
-    Matrix::Graph g(5, Type::Graph::DIRECTED);
+    Matrix::Graph<5> g(Type::Graph::DIRECTED);
 
     g.addEdge(1, 0);
     g.addEdge(2, 0);
