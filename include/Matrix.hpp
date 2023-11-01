@@ -8,14 +8,14 @@
 
 namespace Matrix {
 
-    template <size_t R, size_t C, typename T = int>
+    template <size_t R, typename T = int>
     class adjacentMatrix {
     protected:
-        std::pair<T, T> _m[R * C];
+        std::pair<T, T> _m[R * R];
 
         struct {
             size_t row = R;
-            size_t col = C;
+            size_t col = R;
         } _size;
 
     public:
@@ -26,7 +26,7 @@ namespace Matrix {
 
         adjacentMatrix(const std::pair<T, T>* data);
 
-        adjacentMatrix(const adjacentMatrix<R, C, T>& other);
+        adjacentMatrix(const adjacentMatrix<R, T>& other);
 
         ~adjacentMatrix();
 
@@ -41,6 +41,19 @@ namespace Matrix {
         virtual inline const std::pair<T, T>& at(size_t row, size_t col) const;
 
         inline void set(size_t row, size_t col, const std::pair<T, T>& value);
+
+        friend std::ostream& operator << (std::ostream& os, const adjacentMatrix<R, T>& matrix) {
+
+            for(size_t i = 0; i < R; i++)
+            {
+                for(size_t j = 0; j < R; j++)
+                {
+                    os << std::setw(6) << matrix.at(i, j) << " ";
+                }
+                os << std::endl;
+            }
+            return os;
+        };
     };
 
 
@@ -75,7 +88,7 @@ namespace Matrix {
 
         M(const T* data);
 
-        M(const Matrix::adjacentMatrix<R, C, T>& adjMatrix);
+        M(const Matrix::adjacentMatrix<R, T>& adjMatrix);
 
         ~M();
 
@@ -123,7 +136,7 @@ namespace Matrix {
         M& operator=(const T* data_array);
         M& operator=(const std::vector<T>& data_vec);
 
-        M& operator=(const Matrix::adjacentMatrix<R, C, T>& adjMatrix);
+        M& operator=(const Matrix::adjacentMatrix<R, T>& adjMatrix);
 
         M& operator=(T v);
         void fill(T v);
@@ -323,9 +336,9 @@ Matrix::M<R, C, T>& Matrix::M<R, C, T>::operator=(const std::vector<T> &data_vec
 }
 
 template<size_t R, size_t C, typename T>
-Matrix::M <R, C, T> &Matrix::M<R, C, T>::operator=(const Matrix::adjacentMatrix<R, C, T> &adjMatrix) {
+Matrix::M <R, C, T> &Matrix::M<R, C, T>::operator=(const Matrix::adjacentMatrix<R, T> &adjMatrix) {
     for (size_t i = 0; i < R; i++) {
-        for (size_t j = 0; j < C; j++) {
+        for (size_t j = 0; j < R; j++) {
             at(i, j) = adjMatrix(i, j).first;
         }
     }
@@ -439,65 +452,65 @@ Matrix::M<R, C, T>::M(const std::vector<T> &vec) : _m() {
 template<size_t R, size_t C, typename T>
 Matrix::M<R, C, T>::~M() {}
 
-template<size_t R, size_t C, typename T>
-Matrix::adjacentMatrix<R, C, T>::adjacentMatrix() {
+template<size_t R, typename T>
+Matrix::adjacentMatrix<R, T>::adjacentMatrix() {
     for (size_t i = 0; i < R; i++) {
-        for (size_t j = 0; j < C; j++) {
+        for (size_t j = 0; j < R; j++) {
             at(i, j) = std::make_pair(0, 0);
         }
     }
 }
 
-template<size_t R, size_t C, typename T>
-Matrix::adjacentMatrix<R, C, T>::adjacentMatrix(const std::pair<T, T> *data) {
+template<size_t R, typename T>
+Matrix::adjacentMatrix<R, T>::adjacentMatrix(const std::pair<T, T> *data) {
     (*this) = data;
 }
 
-template<size_t R, size_t C, typename T>
-Matrix::adjacentMatrix<R, C, T>::adjacentMatrix(const std::vector<std::pair<T, T>> &vec) {
+template<size_t R, typename T>
+Matrix::adjacentMatrix<R, T>::adjacentMatrix(const std::vector<std::pair<T, T>> &vec) {
     (*this) = vec;
 }
 
-template<size_t R, size_t C, typename T>
-Matrix::adjacentMatrix<R, C, T>::~adjacentMatrix() = default;
+template<size_t R, typename T>
+Matrix::adjacentMatrix<R, T>::~adjacentMatrix() = default;
 
-template<size_t R, size_t C, typename T>
-std::pair<T, T> &Matrix::adjacentMatrix<R, C, T>::operator()(size_t row, size_t col) {
+template<size_t R, typename T>
+std::pair<T, T> &Matrix::adjacentMatrix<R, T>::operator()(size_t row, size_t col) {
     return at(row, col);
 }
 
-template<size_t R, size_t C, typename T>
-const std::pair<T, T> &Matrix::adjacentMatrix<R, C, T>::operator()(size_t row, size_t col) const {
+template<size_t R, typename T>
+const std::pair<T, T> &Matrix::adjacentMatrix<R, T>::operator()(size_t row, size_t col) const {
     return at(row, col);
 }
 
-template<size_t R, size_t C, typename T>
-void Matrix::adjacentMatrix<R, C, T>::operator()(size_t row, size_t col, std::pair<T, T> value) {
+template<size_t R, typename T>
+void Matrix::adjacentMatrix<R, T>::operator()(size_t row, size_t col, std::pair<T, T> value) {
     return set(row, col, value);
 }
 
-template<size_t R, size_t C, typename T>
-Matrix::adjacentMatrix<R, C, T>::adjacentMatrix(const Matrix::adjacentMatrix<R, C, T> &other) {
+template<size_t R, typename T>
+Matrix::adjacentMatrix<R, T>::adjacentMatrix(const Matrix::adjacentMatrix<R, T> &other) {
     (*this) = other;
 }
 
-template<size_t R, size_t C, typename T>
-std::pair<T, T> &Matrix::adjacentMatrix<R, C, T>::at(size_t row, size_t col) {
-    if (row >= R || col >= C) {
+template<size_t R, typename T>
+std::pair<T, T> &Matrix::adjacentMatrix<R, T>::at(size_t row, size_t col) {
+    if (row >= R || col >= R) {
         throw std::out_of_range("Matrix::adjacentMatrix::at() -- index out of range !");
     }
-    return _m[row * C + col];
+    return _m[row * R + col];
 }
 
-template<size_t R, size_t C, typename T>
-const std::pair<T, T> &Matrix::adjacentMatrix<R, C, T>::at(size_t row, size_t col) const {
-    if (row >= R || col >= C) {
+template<size_t R, typename T>
+const std::pair<T, T> &Matrix::adjacentMatrix<R, T>::at(size_t row, size_t col) const {
+    if (row >= R || col >= R) {
         throw std::out_of_range("Matrix::adjacentMatrix::at() -- index out of range !");
     }
-    return _m[row * C + col];
+    return _m[row * R + col];
 }
 
-template<size_t R, size_t C, typename T>
-void Matrix::adjacentMatrix<R, C, T>::set(size_t row, size_t col, const std::pair<T, T> &value) {
-    _m[row * C + col] = value;
+template<size_t R, typename T>
+void Matrix::adjacentMatrix<R, T>::set(size_t row, size_t col, const std::pair<T, T> &value) {
+    _m[row * R + col] = value;
 }

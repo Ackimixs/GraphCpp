@@ -9,7 +9,7 @@
 
 namespace Matrix {
     template< size_t N, typename T = double >
-    class Graph : public adjacentMatrix<N, N, T> {
+    class Graph : public adjacentMatrix<N, T> {
     private:
         Type::Graph _d;
 
@@ -175,11 +175,11 @@ namespace Matrix {
 
 
 template<size_t N, typename T>
-Matrix::Graph<N, T>::Graph(Type::Graph directed) : adjacentMatrix<N, N, T>(), _d(directed) {
+Matrix::Graph<N, T>::Graph(Type::Graph directed) : adjacentMatrix<N, T>(), _d(directed) {
 }
 
 template<size_t N, typename T>
-Matrix::Graph<N, T>::Graph(const Graph &graph) : adjacentMatrix<N, N, T>(graph), _d(graph._d) {
+Matrix::Graph<N, T>::Graph(const Graph &graph) : adjacentMatrix<N, T>(graph), _d(graph._d) {
 }
 
 template<size_t N, typename T>
