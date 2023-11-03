@@ -182,3 +182,47 @@ jobs:
         with:
           name: middle_n_middle_p
           path: ${{github.workspace}}/build/middle_n_middle_p.gml
+
+  upload:
+    needs: [run-little-n-little-p, run-little-n-big-p, run-big-n-little-p, run-big-n-big-p, run-middle-n-middle-p]
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Download
+        uses: actions/download-artifact@v2
+        with:
+          name: little_n_little_p
+          path: ${{github.workspace}}/build
+
+      - name: Download
+        uses: actions/download-artifact@v2
+        with:
+          name: little_n_big_p
+          path: ${{github.workspace}}/build
+
+      - name: Download
+        uses: actions/download-artifact@v2
+        with:
+          name: big_n_little_p
+          path: ${{github.workspace}}/build
+
+      - name: Download
+        uses: actions/download-artifact@v2
+        with:
+          name: big_n_big_p
+          path: ${{github.workspace}}/build
+
+      - name: Download
+        uses: actions/download-artifact@v2
+        with:
+          name: middle_n_middle_p
+          path: ${{github.workspace}}/build
+
+      - name: Upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: results
+          path: ${{github.workspace}}/build
