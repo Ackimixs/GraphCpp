@@ -195,34 +195,43 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: little_n_little_p
-          path: ${{github.workspace}}/build
+          path: ${{github.workspace}}
 
       - name: Download
         uses: actions/download-artifact@v2
         with:
           name: little_n_big_p
-          path: ${{github.workspace}}/build
+          path: ${{github.workspace}}
 
       - name: Download
         uses: actions/download-artifact@v2
         with:
           name: big_n_little_p
-          path: ${{github.workspace}}/build
+          path: ${{github.workspace}}
 
       - name: Download
         uses: actions/download-artifact@v2
         with:
           name: big_n_big_p
-          path: ${{github.workspace}}/build
+          path: ${{github.workspace}}
 
       - name: Download
         uses: actions/download-artifact@v2
         with:
           name: middle_n_middle_p
-          path: ${{github.workspace}}/build
+          path: ${{github.workspace}}
 
-      - name: Upload
-        uses: actions/upload-artifact@v2
+      - name: Commit file
+        working-directory: ${{github.workspace}}
+        run: |
+          git init .
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add .
+          git commit -m "Results"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
         with:
-          name: results
-          path: ${{github.workspace}}/build
+          github_token: ${{ secrets.OAUTH_TOKEN }}
+          branch: result
