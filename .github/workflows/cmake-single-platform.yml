@@ -64,7 +64,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: little_n_little_p
-          path: little_n_little_p.gml
+          path: ${{github.workspace}}/build/little_n_little_p.gml
 
   run-little-n-big-p:
     needs: [build]
@@ -93,7 +93,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: little_n_big_p
-          path: little_n_big_p.gml
+          path: ${{github.workspace}}/build/little_n_big_p.gml
 
 
   run-big-n-little-p:
@@ -123,7 +123,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: big_n_little_p
-          path: big_n_little_p.gml
+          path: ${{github.workspace}}/build/big_n_little_p.gml
 
   run-big-n-big-p:
     needs: [build]
@@ -152,7 +152,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: big_n_big_p
-          path: big_n_big_p.gml
+          path: ${{github.workspace}}/build/big_n_big_p.gml
 
   run-middle-n-middle-p:
     needs: [build]
@@ -181,4 +181,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: middle_n_middle_p
-          path: middle_n_middle_p.gml
+          path: ${{github.workspace}}/build/middle_n_middle_p.gml
