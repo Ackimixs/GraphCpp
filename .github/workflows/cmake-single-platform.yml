@@ -61,7 +61,7 @@ jobs:
         run: ./ggraph -n 100 -p 0.03 -o little_n_little_p.gml
 
       - name: Upload
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: little_n_little_p
           path: ${{github.workspace}}/build/little_n_little_p.gml
@@ -90,7 +90,7 @@ jobs:
         run: ./ggraph -n 100 -p 0.3 -o little_n_big_p.gml
 
       - name: Upload
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: little_n_big_p
           path: ${{github.workspace}}/build/little_n_big_p.gml
@@ -120,7 +120,7 @@ jobs:
         run: ./ggraph -n 1000 -p 0.001 -o big_n_little_p.gml
 
       - name: Upload
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: big_n_little_p
           path: ${{github.workspace}}/build/big_n_little_p.gml
@@ -149,7 +149,7 @@ jobs:
         run: ./ggraph -n 1000 -p 0.3 -o big_n_big_p.gml
 
       - name: Upload
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: big_n_big_p
           path: ${{github.workspace}}/build/big_n_big_p.gml
@@ -178,7 +178,7 @@ jobs:
         run: ./ggraph -n 500 -p 0.01 -o middle_n_middle_p.gml
 
       - name: Upload
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: middle_n_middle_p
           path: ${{github.workspace}}/build/middle_n_middle_p.gml
@@ -192,31 +192,31 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Download
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: little_n_little_p
           path: ${{github.workspace}}
 
       - name: Download
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: little_n_big_p
           path: ${{github.workspace}}
 
       - name: Download
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: big_n_little_p
           path: ${{github.workspace}}
 
       - name: Download
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: big_n_big_p
           path: ${{github.workspace}}
 
       - name: Download
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: middle_n_middle_p
           path: ${{github.workspace}}
