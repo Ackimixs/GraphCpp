@@ -192,31 +192,31 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Download
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v2.1.1
         with:
           name: little_n_little_p
           path: ${{github.workspace}}
 
       - name: Download
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v2.1.1
         with:
           name: little_n_big_p
           path: ${{github.workspace}}
 
       - name: Download
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v2.1.1
         with:
           name: big_n_little_p
           path: ${{github.workspace}}
 
       - name: Download
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v2.1.1
         with:
           name: big_n_big_p
           path: ${{github.workspace}}
 
       - name: Download
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v2.1.1
         with:
           name: middle_n_middle_p
           path: ${{github.workspace}}
