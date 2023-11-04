@@ -181,10 +181,12 @@ int main(int argv, char **argc) {
 void runGraphTester(std::map<std::string, std::string> args) {
 
     if (args.contains("-o")) {
-
+        int n;
+        double p;
         std::string filename;
 
-
+        n = args.contains("-n") ? std::stoi(args["-n"]) : 1000;
+        p = args.contains("-p") ? std::stod(args["-p"]) : .01;
         filename = args["-o"];
 
         List::Graph g = List::Graph::createRandomGraph(n, Type::Graph::UNDIRECTED, p, true);
