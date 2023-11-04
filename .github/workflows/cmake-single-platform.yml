@@ -196,7 +196,7 @@ jobs:
 
       - name: Go to result branch
         run: |
-          git checkout -b result
+          git checkout result
           git pull
 
       - name: Download
