@@ -190,6 +190,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
+          fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
+
+      - name: Go to result branch
+        run: |
+          git checkout result
+          git pull
 
       - name: Download
         uses: actions/download-artifact@v2.1.1
@@ -215,23 +223,17 @@ jobs:
           name: big_n_big_p
           path: ${{github.workspace}}
 
-      - name: Download
-        uses: actions/download-artifact@v2.1.1
-        with:
-          name: middle_n_middle_p
-          path: ${{github.workspace}}
-
       - name: Commit file
         working-directory: ${{github.workspace}}
         run: |
-          git init .
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add .
-          git commit -m "Results"
+          git commit -a -m "Results"
 
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: result
+          force: true
