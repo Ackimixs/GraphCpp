@@ -94,6 +94,31 @@ jobs:
 
         run: ./ggraph -n 500 -p 0.01 -o graph-results/middle_n_middle_p.gml
 
+      - name: Run Cycle Graph
+        working-directory: ${{github.workspace}}/build
+
+        run: ./ggraph -n 1000 --template cycle -o graph-results/cycle.gml
+
+      - name: Run Star Graph
+        working-directory: ${{github.workspace}}/build
+
+        run: ./ggraph -n 1000 --template star -o graph-results/star.gml
+
+      - name: Run Black Hole Graph
+        working-directory: ${{github.workspace}}/build
+
+        run: ./ggraph -n 1000 --template black_hole -o graph-results/black_hole.gml
+
+      - name: Run Bipartite Graph
+        working-directory: ${{github.workspace}}/build
+
+        run: ./ggraph -n 1000 --template bipartite -o graph-results/bipartite.gml
+
+      - name: Run complete Graph
+        working-directory: ${{github.workspace}}/build
+
+        run: ./ggraph -n 1000 --template complete -o graph-results/complete.gml
+
       - name: Upload results
         uses: actions/upload-artifact@v3
         with:

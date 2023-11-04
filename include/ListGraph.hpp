@@ -71,6 +71,8 @@ namespace List {
 
         static List::Graph createBipartiteGraph(int numberOfVertices, Type::Graph directed = Type::Graph::UNDIRECTED, bool includeRandomWeight = false);
 
+        static List::Graph createStarGraph(int numberOfVertices, Type::Graph directed = Type::Graph::UNDIRECTED, bool includeRandomWeight = false);
+
         /**
          * @brief Get the size of the graph
          * @return the size of the graph
@@ -817,6 +819,22 @@ List::Graph List::Graph::createBipartiteGraph(int numberOfVertices, Type::Graph 
         for (int j = numberOfVertices / 2; j < numberOfVertices; j++) {
             g.addEdge(i, j, includeRandomWeight ? weightDist(gen) : 1);
         }
+    }
+    return g;
+}
+
+List::Graph List::Graph::createStarGraph(int numberOfVertices, Type::Graph directed, bool includeRandomWeight) {
+    if (numberOfVertices <= 0) {
+        throw std::invalid_argument("Invalid input parameters.");
+    }
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<int> weightDist(1, 100); // Random weight between 1 and 100
+
+    List::Graph g = List::Graph(numberOfVertices, directed);
+    for (int i = 1; i < numberOfVertices; i++) {
+        g.addEdge(0, i, includeRandomWeight ? weightDist(gen) : 1);
     }
     return g;
 }

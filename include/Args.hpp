@@ -76,6 +76,8 @@ void runGraphArgs(std::map<std::string, std::vector<std::string>> args) {
             int startIndex = templateArgs.size() > 1 ? Utils::isNumber(templateArgs[1]) ? std::stoi(templateArgs[1]) : 0 : 0;
 
             g = List::Graph::createBlackHoleGraph(n, Type::Graph::UNDIRECTED, true, startIndex);
+        } else if (templateArgs[0] == "star") {
+            g = List::Graph::createStarGraph(n, Type::Graph::UNDIRECTED, true);
         } else if (templateArgs[0] == "random") {
             g = List::Graph::createRandomGraph(n, Type::Graph::UNDIRECTED, p, true);
         } else {
