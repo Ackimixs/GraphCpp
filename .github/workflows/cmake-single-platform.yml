@@ -42,7 +42,7 @@ jobs:
       run: ctest -C ${{env.BUILD_TYPE}} -V
 
 
-  run-little-n-little-p:
+  run-graph:
     needs: [build]
 
     runs-on: ubuntu-latest
@@ -60,136 +60,49 @@ jobs:
 
         run: cmake --build build --config ${{env.BUILD_TYPE}}
 
-      - name: Run
+      - name: Directory
+        working-directory: ${{github.workspace}}/build
+        run: mkdir graph-results
+
+      - name: Run little_n_little_p
         working-directory: ${{github.workspace}}/build
 
-        run: ./ggraph -n 100 -p 0.03 -o little_n_little_p.gml
+        run: ./ggraph -n 100 -p 0.03 -o graph-results/little_n_little_p.gml
 
-      - name: Upload
-        uses: actions/upload-artifact@v3
-        with:
-          name: little_n_little_p
-          path: ${{github.workspace}}/build/little_n_little_p.gml
-
-  run-little-n-big-p:
-    needs: [build]
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Configure CMake
-        working-directory: ${{github.workspace}}
-
-        run: cmake -S . -B build
-
-      - name: Build
-        working-directory: ${{github.workspace}}
-
-        run: cmake --build build --config ${{env.BUILD_TYPE}}
-
-      - name: Run
+      - name: Run middle_n_middle_p
         working-directory: ${{github.workspace}}/build
 
-        run: ./ggraph -n 100 -p 0.3 -o little_n_big_p.gml
+        run: ./ggraph -n 500 -p 0.01 -o graph-results/middle_n_middle_p.gml
 
-      - name: Upload
-        uses: actions/upload-artifact@v3
-        with:
-          name: little_n_big_p
-          path: ${{github.workspace}}/build/little_n_big_p.gml
-
-
-  run-big-n-little-p:
-    needs: [build]
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Configure CMake
-        working-directory: ${{github.workspace}}
-
-        run: cmake -S . -B build
-
-      - name: Build
-        working-directory: ${{github.workspace}}
-
-        run: cmake --build build --config ${{env.BUILD_TYPE}}
-
-      - name: Run
+      - name: Run little_n_big_p
         working-directory: ${{github.workspace}}/build
 
-        run: ./ggraph -n 1000 -p 0.001 -o big_n_little_p.gml
+        run: ./ggraph -n 100 -p 0.3 -o graph-results/little_n_big_p.gml
 
-      - name: Upload
-        uses: actions/upload-artifact@v3
-        with:
-          name: big_n_little_p
-          path: ${{github.workspace}}/build/big_n_little_p.gml
-
-  run-big-n-big-p:
-    needs: [build]
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Configure CMake
-        working-directory: ${{github.workspace}}
-
-        run: cmake -S . -B build
-
-      - name: Build
-        working-directory: ${{github.workspace}}
-
-        run: cmake --build build --config ${{env.BUILD_TYPE}}
-
-      - name: Run
+      - name: Run big_n_little_p
         working-directory: ${{github.workspace}}/build
 
-        run: ./ggraph -n 1000 -p 0.3 -o big_n_big_p.gml
+        run: ./ggraph -n 1000 -p 0.001 -o graph-results/big_n_little_p.gml
 
-      - name: Upload
-        uses: actions/upload-artifact@v3
-        with:
-          name: big_n_big_p
-          path: ${{github.workspace}}/build/big_n_big_p.gml
-
-  run-middle-n-middle-p:
-    needs: [build]
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Configure CMake
-        working-directory: ${{github.workspace}}
-
-        run: cmake -S . -B build
-
-      - name: Build
-        working-directory: ${{github.workspace}}
-
-        run: cmake --build build --config ${{env.BUILD_TYPE}}
-
-      - name: Run
+      - name: Run big_n_big_p
         working-directory: ${{github.workspace}}/build
 
-        run: ./ggraph -n 500 -p 0.01 -o middle_n_middle_p.gml
+        run: ./ggraph -n 1000 -p 0.3 -o graph-results/big_n_big_p.gml
 
-      - name: Upload
+      - name: Run middle_n_middle_p
+        working-directory: ${{github.workspace}}/build
+
+        run: ./ggraph -n 500 -p 0.01 -o graph-results/middle_n_middle_p.gml
+
+      - name: Upload results
         uses: actions/upload-artifact@v3
         with:
-          name: middle_n_middle_p
-          path: ${{github.workspace}}/build/middle_n_middle_p.gml
+          name: graph-results
+          path: ${{github.workspace}}/build/graph-results/
+
 
   upload:
-    needs: [run-little-n-little-p, run-little-n-big-p, run-big-n-little-p, run-big-n-big-p, run-middle-n-middle-p]
+    needs: [run-graph]
 
     runs-on: ubuntu-latest
 
@@ -207,31 +120,7 @@ jobs:
       - name: Download
         uses: actions/download-artifact@v3.0.2
         with:
-          name: little_n_little_p
-          path: ${{github.workspace}}
-
-      - name: Download
-        uses: actions/download-artifact@v3.0.2
-        with:
-          name: little_n_big_p
-          path: ${{github.workspace}}
-
-      - name: Download
-        uses: actions/download-artifact@v3.0.2
-        with:
-          name: big_n_little_p
-          path: ${{github.workspace}}
-
-      - name: Download
-        uses: actions/download-artifact@v3.0.2
-        with:
-          name: big_n_big_p
-          path: ${{github.workspace}}
-
-      - name: Download
-        uses: actions/download-artifact@v3.0.2
-        with:
-          name: middle_n_middle_p
+          name: graph-results
           path: ${{github.workspace}}
 
       - name: Commit file
@@ -248,7 +137,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: result
           force: true
-
-
-
-          
