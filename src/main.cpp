@@ -1,25 +1,33 @@
 #include "../include/ListGraph.hpp"
 #include "../include/Matrix.hpp"
-#include "../include/gmlFile.hpp"
-
-#include <map>
-#include <chrono>
-
-void runGraphTester(std::map<std::string, std::string>);
+#include "../include/GmlFile.hpp"
+#include "../include/Args.hpp"
 
 int main(int argv, char **argc) {
 
     // Convert argv to map
-    std::map<std::string, std::string> args;
+    std::map<std::string, std::vector<std::string>> args;
 
     for (int i = 0; i < argv; i++) {
         auto arg = std::string(argc[i]);
         if (arg[0] == '-') {
-            args[arg] = argc[i + 1];
+            args[arg] = std::vector<std::string>();
+            for (int j = i + 1; j < argv; j++) {
+                auto arg2 = std::string(argc[j]);
+                if (arg2[0] == '-') {
+                    break;
+                } else {
+                    args[arg].push_back(arg2);
+                }
+            }
         }
     }
 
-    runGraphTester(args);
+    checkArgs(args);
+
+    Logger::debug("Graph v" + std::string(GRAPH_VERSION) + " started !");
+
+    runGraph(args);
 
 //    List::Graph g(6);
 //
@@ -174,81 +182,4 @@ int main(int argv, char **argc) {
 
 
     return 0;
-}
-
-
-
-void runGraphTester(std::map<std::string, std::string> args) {
-
-    if (args.contains("-o")) {
-        int n;
-        double p;
-        std::string filename;
-
-        n = args.contains("-n") ? std::stoi(args["-n"]) : 1000;
-        p = args.contains("-p") ? std::stod(args["-p"]) : .01;
-        filename = args["-o"];
-
-        List::Graph g = List::Graph::createRandomGraph(n, Type::Graph::UNDIRECTED, p, true);
-
-        toGmlFile(filename, g);
-    }
-
-    if (args.contains("-algo")) {
-        std::string algo = args["-algo"];
-
-        if (algo == "bfs") {
-
-            int n;
-            double p;
-
-            n = args.contains("-n") ? std::stoi(args["-n"]) : 1000;
-            p = args.contains("-p") ? std::stod(args["-p"]) : .01;
-
-            List::Graph g = List::Graph::createRandomGraph(n, Type::Graph::UNDIRECTED, p, true);
-
-            auto start = std::chrono::high_resolution_clock::now();
-
-            auto vec = g.BFS();
-
-            auto end = std::chrono::high_resolution_clock::now();
-
-            for (auto i : vec) {
-                std::cout << i << ", ";
-            }
-
-            std::cout << std::endl;
-
-            std::cout << "Time to execute BFS : ";
-
-            std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << std::endl;
-
-        } else if (algo == "dfs") {
-
-            int n;
-            double p;
-
-            n = args.contains("-n") ? std::stoi(args["-n"]) : 1000;
-            p = args.contains("-p") ? std::stod(args["-p"]) : .01;
-
-            List::Graph g = List::Graph::createRandomGraph(n, Type::Graph::UNDIRECTED, p, true);
-
-            auto start = std::chrono::high_resolution_clock::now();
-
-            auto vec = g.DFS();
-
-            auto end = std::chrono::high_resolution_clock::now();
-
-            for (auto i : vec) {
-                std::cout << i << ", ";
-            }
-
-            std::cout << std::endl;
-
-            std::cout << "Time to execute DFS : ";
-
-            std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << std::endl;
-
-        }
-    }
 }

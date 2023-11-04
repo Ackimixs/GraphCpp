@@ -20,8 +20,10 @@ add_executable(
         graphListTest.cpp
         MatrixTest.cpp
         graphMatrixTest.cpp
-        ../src/ListGraph.cpp
+
+        ../src/Utils.cpp
 )
+
 target_link_libraries(
         MyGraphTest
         GTest::gtest_main

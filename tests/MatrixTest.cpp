@@ -1,5 +1,6 @@
-#include <gtest/gtest.h>
 #include "../include/Matrix.hpp"
+
+#include <gtest/gtest.h>
 
 struct SimpleMatrix : public ::testing::Test {
     Matrix::M<2, 2, int> m;

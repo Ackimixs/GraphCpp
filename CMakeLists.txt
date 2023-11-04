@@ -4,12 +4,12 @@ project(ggraph)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Include the directories where your header files reside
-include_directories(include)
+file(GLOB_RECURSE SOURCES "src/*.cpp")
+file(GLOB_RECURSE HEADERS "include/*.h")
 
 add_executable(ggraph
-        src/main.cpp
-        src/ListGraph.cpp
+    ${SOURCES}
+    ${HEADERS}
 )
 
 # Include the "tests" directory

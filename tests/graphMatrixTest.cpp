@@ -1,5 +1,6 @@
-#include <gtest/gtest.h>
 #include "../include/MatrixGraph.hpp"
+
+#include <gtest/gtest.h>
 
 struct SimpleGraphMatrix : public ::testing::Test {
     Matrix::Graph<4, double> g;

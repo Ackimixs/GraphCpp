@@ -1,8 +1,18 @@
 #pragma once
 
+#ifndef UTILS_HPP
+#define UTILS_HPP
+
 #include <utility>
 #include <vector>
 #include <algorithm>
+#include <string>
+
+namespace Utils {
+    bool isNumber(const std::string& s);
+
+    bool isDouble(const std::string& s);
+}
 
 namespace Type {
     enum Graph {
@@ -71,3 +81,5 @@ public:
         return sum;
     }
 };
+
+#endif // UTILS_HPP

@@ -1,5 +1,6 @@
-#include <gtest/gtest.h>
 #include "../include/ListGraph.hpp"
+
+#include <gtest/gtest.h>
 
 struct SimpleGraphList : public ::testing::Test {
     List::Graph g;
