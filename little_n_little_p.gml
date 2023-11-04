@@ -902,1922 +902,1766 @@ y 1083
 ]
 edge
 [
-source 1
-target 29
-label "21.000000"
+source 0
+target 12
+label "47.000000"
+]
+edge
+[
+source 0
+target 41
+label "94.000000"
+]
+edge
+[
+source 0
+target 45
+label "25.000000"
+]
+edge
+[
+source 0
+target 61
+label "28.000000"
+]
+edge
+[
+source 0
+target 67
+label "84.000000"
 ]
 edge
 [
 source 1
-target 66
-label "83.000000"
-]
-edge
-[
-source 1
-target 99
+target 9
 label "53.000000"
+]
+edge
+[
+source 1
+target 30
+label "26.000000"
+]
+edge
+[
+source 1
+target 82
+label "32.000000"
+]
+edge
+[
+source 1
+target 86
+label "80.000000"
+]
+edge
+[
+source 1
+target 91
+label "5.000000"
 ]
 edge
 [
 source 2
 target 45
-label "14.000000"
+label "96.000000"
 ]
 edge
 [
 source 2
-target 63
-label "14.000000"
-]
-edge
-[
-source 2
-target 67
-label "35.000000"
-]
-edge
-[
-source 2
-target 78
-label "82.000000"
-]
-edge
-[
-source 3
-target 27
-label "69.000000"
-]
-edge
-[
-source 3
-target 29
-label "7.000000"
-]
-edge
-[
-source 3
-target 42
-label "48.000000"
-]
-edge
-[
-source 3
-target 85
-label "92.000000"
-]
-edge
-[
-source 4
-target 9
-label "49.000000"
+target 92
+label "95.000000"
 ]
 edge
 [
 source 4
 target 39
-label "43.000000"
+label "39.000000"
 ]
 edge
 [
 source 4
-target 57
-label "87.000000"
+target 73
+label "79.000000"
 ]
 edge
 [
 source 4
-target 60
-label "29.000000"
-]
-edge
-[
-source 4
-target 91
-label "90.000000"
+target 95
+label "48.000000"
 ]
 edge
 [
 source 5
-target 44
-label "58.000000"
+target 41
+label "13.000000"
 ]
 edge
 [
 source 5
-target 50
-label "94.000000"
+target 42
+label "93.000000"
 ]
 edge
 [
 source 5
-target 74
-label "38.000000"
+target 61
+label "78.000000"
 ]
 edge
 [
 source 6
-target 81
-label "2.000000"
+target 52
+label "52.000000"
 ]
 edge
 [
 source 7
-target 12
-label "85.000000"
+target 30
+label "4.000000"
 ]
 edge
 [
 source 7
-target 16
-label "12.000000"
-]
-edge
-[
-source 7
-target 62
-label "17.000000"
-]
-edge
-[
-source 7
-target 64
-label "35.000000"
-]
-edge
-[
-source 7
-target 85
-label "84.000000"
+target 93
+label "95.000000"
 ]
 edge
 [
 source 8
-target 66
-label "22.000000"
-]
-edge
-[
-source 9
-target 4
-label "49.000000"
-]
-edge
-[
-source 9
-target 20
-label "63.000000"
-]
-edge
-[
-source 9
-target 31
-label "46.000000"
-]
-edge
-[
-source 9
-target 36
-label "85.000000"
-]
-edge
-[
-source 9
-target 43
-label "48.000000"
-]
-edge
-[
-source 9
-target 70
-label "9.000000"
-]
-edge
-[
-source 9
-target 85
-label "29.000000"
-]
-edge
-[
-source 9
-target 88
-label "21.000000"
-]
-edge
-[
-source 10
-target 20
-label "72.000000"
-]
-edge
-[
-source 10
-target 33
-label "60.000000"
-]
-edge
-[
-source 10
-target 65
-label "15.000000"
-]
-edge
-[
-source 11
-target 21
-label "71.000000"
-]
-edge
-[
-source 11
-target 38
-label "89.000000"
-]
-edge
-[
-source 11
-target 74
-label "74.000000"
-]
-edge
-[
-source 12
-target 7
-label "85.000000"
-]
-edge
-[
-source 12
-target 30
-label "59.000000"
-]
-edge
-[
-source 13
-target 14
-label "96.000000"
-]
-edge
-[
-source 13
-target 37
-label "3.000000"
-]
-edge
-[
-source 13
-target 77
-label "27.000000"
-]
-edge
-[
-source 14
-target 13
-label "96.000000"
-]
-edge
-[
-source 14
-target 30
-label "30.000000"
-]
-edge
-[
-source 14
-target 77
-label "37.000000"
-]
-edge
-[
-source 15
-target 36
-label "21.000000"
-]
-edge
-[
-source 15
-target 44
-label "34.000000"
-]
-edge
-[
-source 15
-target 56
-label "58.000000"
-]
-edge
-[
-source 16
-target 7
-label "12.000000"
-]
-edge
-[
-source 16
-target 66
-label "31.000000"
-]
-edge
-[
-source 16
-target 71
-label "98.000000"
-]
-edge
-[
-source 17
-target 45
-label "55.000000"
-]
-edge
-[
-source 17
-target 68
-label "54.000000"
-]
-edge
-[
-source 17
-target 91
-label "39.000000"
-]
-edge
-[
-source 17
-target 92
-label "89.000000"
-]
-edge
-[
-source 17
-target 99
-label "37.000000"
-]
-edge
-[
-source 18
-target 52
-label "31.000000"
-]
-edge
-[
-source 19
-target 89
-label "49.000000"
-]
-edge
-[
-source 20
-target 9
-label "63.000000"
-]
-edge
-[
-source 20
-target 10
-label "72.000000"
-]
-edge
-[
-source 20
-target 75
-label "64.000000"
-]
-edge
-[
-source 20
-target 84
-label "97.000000"
-]
-edge
-[
-source 21
-target 11
-label "71.000000"
-]
-edge
-[
-source 21
-target 27
-label "11.000000"
-]
-edge
-[
-source 21
-target 42
-label "39.000000"
-]
-edge
-[
-source 21
-target 64
-label "13.000000"
-]
-edge
-[
-source 21
-target 82
-label "18.000000"
-]
-edge
-[
-source 22
 target 26
-label "1.000000"
-]
-edge
-[
-source 22
-target 49
 label "49.000000"
 ]
 edge
 [
-source 23
-target 85
-label "67.000000"
-]
-edge
-[
-source 23
-target 92
-label "69.000000"
-]
-edge
-[
-source 24
-target 61
-label "42.000000"
-]
-edge
-[
-source 25
-target 35
-label "74.000000"
-]
-edge
-[
-source 26
-target 22
-label "1.000000"
-]
-edge
-[
-source 26
-target 53
-label "74.000000"
-]
-edge
-[
-source 27
-target 3
-label "69.000000"
-]
-edge
-[
-source 27
-target 21
-label "11.000000"
-]
-edge
-[
-source 27
-target 45
-label "28.000000"
-]
-edge
-[
-source 27
-target 64
-label "52.000000"
-]
-edge
-[
-source 27
-target 91
-label "48.000000"
-]
-edge
-[
-source 27
-target 95
-label "49.000000"
-]
-edge
-[
-source 27
-target 98
-label "98.000000"
-]
-edge
-[
-source 28
-target 59
-label "98.000000"
-]
-edge
-[
-source 28
-target 65
-label "6.000000"
-]
-edge
-[
-source 28
-target 83
-label "100.000000"
-]
-edge
-[
-source 28
-target 87
-label "11.000000"
-]
-edge
-[
-source 29
-target 1
-label "21.000000"
-]
-edge
-[
-source 29
-target 3
-label "7.000000"
-]
-edge
-[
-source 30
-target 12
-label "59.000000"
-]
-edge
-[
-source 30
-target 14
-label "30.000000"
-]
-edge
-[
-source 30
-target 60
-label "32.000000"
-]
-edge
-[
-source 30
-target 63
-label "27.000000"
-]
-edge
-[
-source 30
-target 73
-label "51.000000"
-]
-edge
-[
-source 30
-target 92
-label "62.000000"
-]
-edge
-[
-source 31
-target 9
-label "46.000000"
-]
-edge
-[
-source 31
-target 74
-label "45.000000"
-]
-edge
-[
-source 32
-target 52
-label "60.000000"
-]
-edge
-[
-source 32
-target 64
-label "91.000000"
-]
-edge
-[
-source 32
-target 96
-label "18.000000"
-]
-edge
-[
-source 32
-target 97
-label "76.000000"
-]
-edge
-[
-source 33
-target 10
-label "60.000000"
-]
-edge
-[
-source 33
-target 89
-label "43.000000"
-]
-edge
-[
-source 33
-target 98
-label "25.000000"
-]
-edge
-[
-source 34
-target 56
-label "52.000000"
-]
-edge
-[
-source 34
-target 94
-label "34.000000"
-]
-edge
-[
-source 35
-target 25
-label "74.000000"
-]
-edge
-[
-source 35
-target 87
-label "19.000000"
-]
-edge
-[
-source 36
-target 9
-label "85.000000"
-]
-edge
-[
-source 36
-target 15
-label "21.000000"
-]
-edge
-[
-source 36
-target 79
-label "84.000000"
-]
-edge
-[
-source 37
-target 13
-label "3.000000"
-]
-edge
-[
-source 37
-target 72
-label "41.000000"
-]
-edge
-[
-source 37
-target 85
-label "14.000000"
-]
-edge
-[
-source 38
-target 11
-label "89.000000"
-]
-edge
-[
-source 38
-target 88
-label "19.000000"
-]
-edge
-[
-source 39
-target 4
-label "43.000000"
-]
-edge
-[
-source 39
-target 40
-label "9.000000"
-]
-edge
-[
-source 39
-target 49
-label "54.000000"
-]
-edge
-[
-source 39
-target 72
-label "58.000000"
-]
-edge
-[
-source 40
-target 39
-label "9.000000"
-]
-edge
-[
-source 40
-target 80
-label "16.000000"
-]
-edge
-[
-source 40
-target 85
-label "97.000000"
-]
-edge
-[
-source 41
-target 46
-label "12.000000"
-]
-edge
-[
-source 41
-target 50
-label "33.000000"
-]
-edge
-[
-source 41
-target 76
-label "14.000000"
-]
-edge
-[
-source 41
-target 96
-label "36.000000"
-]
-edge
-[
-source 42
-target 3
-label "48.000000"
-]
-edge
-[
-source 42
-target 21
-label "39.000000"
-]
-edge
-[
-source 42
-target 61
-label "47.000000"
-]
-edge
-[
-source 42
-target 76
-label "42.000000"
-]
-edge
-[
-source 42
-target 83
-label "30.000000"
-]
-edge
-[
-source 42
-target 92
-label "33.000000"
-]
-edge
-[
-source 43
-target 9
-label "48.000000"
-]
-edge
-[
-source 43
-target 53
-label "39.000000"
-]
-edge
-[
-source 43
-target 78
-label "39.000000"
-]
-edge
-[
-source 44
-target 5
-label "58.000000"
-]
-edge
-[
-source 44
-target 15
-label "34.000000"
-]
-edge
-[
-source 44
-target 56
-label "94.000000"
-]
-edge
-[
-source 45
-target 2
-label "14.000000"
-]
-edge
-[
-source 45
-target 17
-label "55.000000"
-]
-edge
-[
-source 45
-target 27
-label "28.000000"
-]
-edge
-[
-source 45
-target 62
-label "95.000000"
-]
-edge
-[
-source 45
-target 69
-label "33.000000"
-]
-edge
-[
-source 46
-target 41
-label "12.000000"
-]
-edge
-[
-source 48
-target 75
-label "42.000000"
-]
-edge
-[
-source 48
-target 88
-label "40.000000"
-]
-edge
-[
-source 49
-target 22
-label "49.000000"
-]
-edge
-[
-source 49
-target 39
-label "54.000000"
-]
-edge
-[
-source 49
-target 70
-label "6.000000"
-]
-edge
-[
-source 49
-target 97
-label "8.000000"
-]
-edge
-[
-source 50
-target 5
-label "94.000000"
-]
-edge
-[
-source 50
-target 41
-label "33.000000"
-]
-edge
-[
-source 50
-target 52
-label "9.000000"
-]
-edge
-[
-source 50
-target 75
-label "48.000000"
-]
-edge
-[
-source 50
-target 80
-label "91.000000"
-]
-edge
-[
-source 50
-target 87
-label "46.000000"
-]
-edge
-[
-source 50
-target 91
-label "4.000000"
-]
-edge
-[
-source 51
-target 81
-label "59.000000"
-]
-edge
-[
-source 51
-target 88
-label "13.000000"
-]
-edge
-[
-source 52
-target 18
-label "31.000000"
-]
-edge
-[
-source 52
-target 32
-label "60.000000"
-]
-edge
-[
-source 52
-target 50
-label "9.000000"
-]
-edge
-[
-source 53
-target 26
-label "74.000000"
-]
-edge
-[
-source 53
-target 43
-label "39.000000"
-]
-edge
-[
-source 53
-target 79
-label "76.000000"
-]
-edge
-[
-source 55
-target 59
-label "15.000000"
-]
-edge
-[
-source 55
-target 62
-label "18.000000"
-]
-edge
-[
-source 55
-target 70
-label "14.000000"
-]
-edge
-[
-source 56
-target 15
-label "58.000000"
-]
-edge
-[
-source 56
-target 34
-label "52.000000"
-]
-edge
-[
-source 56
-target 44
-label "94.000000"
-]
-edge
-[
-source 56
-target 94
-label "76.000000"
-]
-edge
-[
-source 57
-target 4
-label "87.000000"
-]
-edge
-[
-source 57
-target 64
-label "14.000000"
-]
-edge
-[
-source 57
-target 78
-label "52.000000"
-]
-edge
-[
-source 57
-target 97
-label "10.000000"
-]
-edge
-[
-source 58
-target 63
-label "12.000000"
-]
-edge
-[
-source 59
-target 28
-label "98.000000"
-]
-edge
-[
-source 59
-target 55
-label "15.000000"
-]
-edge
-[
-source 60
-target 4
-label "29.000000"
-]
-edge
-[
-source 60
-target 30
-label "32.000000"
-]
-edge
-[
-source 60
-target 69
-label "48.000000"
-]
-edge
-[
-source 61
-target 24
-label "42.000000"
-]
-edge
-[
-source 61
-target 42
-label "47.000000"
-]
-edge
-[
-source 61
-target 74
-label "38.000000"
-]
-edge
-[
-source 61
-target 82
-label "54.000000"
-]
-edge
-[
-source 61
-target 98
-label "51.000000"
-]
-edge
-[
-source 62
-target 7
-label "17.000000"
-]
-edge
-[
-source 62
-target 45
-label "95.000000"
-]
-edge
-[
-source 62
-target 55
-label "18.000000"
-]
-edge
-[
-source 62
-target 63
-label "46.000000"
-]
-edge
-[
-source 62
-target 85
-label "12.000000"
-]
-edge
-[
-source 63
-target 2
-label "14.000000"
-]
-edge
-[
-source 63
-target 30
-label "27.000000"
-]
-edge
-[
-source 63
-target 58
-label "12.000000"
-]
-edge
-[
-source 63
-target 62
-label "46.000000"
-]
-edge
-[
-source 64
-target 7
-label "35.000000"
-]
-edge
-[
-source 64
-target 21
-label "13.000000"
-]
-edge
-[
-source 64
-target 27
-label "52.000000"
-]
-edge
-[
-source 64
-target 32
-label "91.000000"
-]
-edge
-[
-source 64
-target 57
-label "14.000000"
-]
-edge
-[
-source 64
+source 8
 target 67
-label "35.000000"
-]
-edge
-[
-source 64
-target 70
-label "94.000000"
-]
-edge
-[
-source 65
-target 10
-label "15.000000"
-]
-edge
-[
-source 65
-target 28
-label "6.000000"
-]
-edge
-[
-source 66
-target 1
-label "83.000000"
-]
-edge
-[
-source 66
-target 8
-label "22.000000"
-]
-edge
-[
-source 66
-target 16
-label "31.000000"
-]
-edge
-[
-source 66
-target 87
-label "34.000000"
-]
-edge
-[
-source 67
-target 2
-label "35.000000"
-]
-edge
-[
-source 67
-target 64
-label "35.000000"
-]
-edge
-[
-source 68
-target 17
-label "54.000000"
-]
-edge
-[
-source 68
-target 86
-label "4.000000"
-]
-edge
-[
-source 69
-target 45
-label "33.000000"
-]
-edge
-[
-source 69
-target 60
-label "48.000000"
-]
-edge
-[
-source 69
-target 74
-label "61.000000"
-]
-edge
-[
-source 70
-target 9
-label "9.000000"
-]
-edge
-[
-source 70
-target 49
-label "6.000000"
-]
-edge
-[
-source 70
-target 55
-label "14.000000"
-]
-edge
-[
-source 70
-target 64
-label "94.000000"
-]
-edge
-[
-source 70
-target 96
-label "60.000000"
-]
-edge
-[
-source 71
-target 16
-label "98.000000"
-]
-edge
-[
-source 72
-target 37
-label "41.000000"
-]
-edge
-[
-source 72
-target 39
-label "58.000000"
-]
-edge
-[
-source 72
-target 80
-label "3.000000"
-]
-edge
-[
-source 72
-target 88
-label "25.000000"
-]
-edge
-[
-source 73
-target 30
-label "51.000000"
-]
-edge
-[
-source 73
-target 74
-label "89.000000"
-]
-edge
-[
-source 73
-target 96
-label "99.000000"
-]
-edge
-[
-source 74
-target 5
-label "38.000000"
-]
-edge
-[
-source 74
-target 11
-label "74.000000"
-]
-edge
-[
-source 74
-target 31
-label "45.000000"
-]
-edge
-[
-source 74
-target 61
-label "38.000000"
-]
-edge
-[
-source 74
-target 69
-label "61.000000"
-]
-edge
-[
-source 74
-target 73
-label "89.000000"
-]
-edge
-[
-source 74
-target 85
-label "52.000000"
-]
-edge
-[
-source 74
-target 93
-label "74.000000"
-]
-edge
-[
-source 75
-target 20
-label "64.000000"
-]
-edge
-[
-source 75
-target 48
-label "42.000000"
-]
-edge
-[
-source 75
-target 50
-label "48.000000"
-]
-edge
-[
-source 75
-target 84
-label "49.000000"
-]
-edge
-[
-source 75
-target 92
-label "68.000000"
-]
-edge
-[
-source 76
-target 41
-label "14.000000"
-]
-edge
-[
-source 76
-target 42
-label "42.000000"
-]
-edge
-[
-source 77
-target 13
-label "27.000000"
-]
-edge
-[
-source 77
-target 14
-label "37.000000"
-]
-edge
-[
-source 78
-target 2
-label "82.000000"
-]
-edge
-[
-source 78
-target 43
 label "39.000000"
 ]
 edge
 [
-source 78
-target 57
-label "52.000000"
-]
-edge
-[
-source 78
-target 79
-label "47.000000"
-]
-edge
-[
-source 79
-target 36
-label "84.000000"
-]
-edge
-[
-source 79
-target 53
-label "76.000000"
-]
-edge
-[
-source 79
-target 78
-label "47.000000"
-]
-edge
-[
-source 79
-target 90
-label "3.000000"
-]
-edge
-[
-source 80
-target 40
-label "16.000000"
-]
-edge
-[
-source 80
-target 50
-label "91.000000"
-]
-edge
-[
-source 80
-target 72
-label "3.000000"
-]
-edge
-[
-source 80
-target 97
-label "63.000000"
-]
-edge
-[
-source 81
-target 6
-label "2.000000"
-]
-edge
-[
-source 81
-target 51
-label "59.000000"
-]
-edge
-[
-source 82
-target 21
-label "18.000000"
-]
-edge
-[
-source 82
-target 61
-label "54.000000"
-]
-edge
-[
-source 83
-target 28
-label "100.000000"
-]
-edge
-[
-source 83
-target 42
-label "30.000000"
-]
-edge
-[
-source 84
-target 20
-label "97.000000"
-]
-edge
-[
-source 84
-target 75
-label "49.000000"
-]
-edge
-[
-source 85
-target 3
-label "92.000000"
-]
-edge
-[
-source 85
-target 7
-label "84.000000"
-]
-edge
-[
-source 85
-target 9
-label "29.000000"
-]
-edge
-[
-source 85
-target 23
-label "67.000000"
-]
-edge
-[
-source 85
-target 37
-label "14.000000"
-]
-edge
-[
-source 85
-target 40
-label "97.000000"
-]
-edge
-[
-source 85
-target 62
-label "12.000000"
-]
-edge
-[
-source 85
-target 74
-label "52.000000"
-]
-edge
-[
-source 86
-target 68
-label "4.000000"
-]
-edge
-[
-source 86
-target 91
-label "40.000000"
-]
-edge
-[
-source 87
-target 28
-label "11.000000"
-]
-edge
-[
-source 87
-target 35
-label "19.000000"
-]
-edge
-[
-source 87
-target 50
-label "46.000000"
-]
-edge
-[
-source 87
-target 66
-label "34.000000"
-]
-edge
-[
-source 88
-target 9
-label "21.000000"
-]
-edge
-[
-source 88
-target 38
-label "19.000000"
-]
-edge
-[
-source 88
-target 48
-label "40.000000"
-]
-edge
-[
-source 88
-target 51
-label "13.000000"
-]
-edge
-[
-source 88
-target 72
-label "25.000000"
-]
-edge
-[
-source 89
-target 19
-label "49.000000"
-]
-edge
-[
-source 89
-target 33
-label "43.000000"
-]
-edge
-[
-source 90
-target 79
-label "3.000000"
-]
-edge
-[
-source 91
-target 4
-label "90.000000"
-]
-edge
-[
-source 91
-target 17
-label "39.000000"
-]
-edge
-[
-source 91
-target 27
-label "48.000000"
-]
-edge
-[
-source 91
-target 50
-label "4.000000"
-]
-edge
-[
-source 91
+source 8
 target 86
-label "40.000000"
-]
-edge
-[
-source 92
-target 17
-label "89.000000"
-]
-edge
-[
-source 92
-target 23
 label "69.000000"
 ]
 edge
 [
-source 92
-target 30
-label "62.000000"
+source 8
+target 96
+label "95.000000"
 ]
 edge
 [
-source 92
-target 42
-label "33.000000"
-]
-edge
-[
-source 92
-target 75
-label "68.000000"
-]
-edge
-[
-source 92
-target 93
-label "3.000000"
-]
-edge
-[
-source 93
-target 74
-label "74.000000"
-]
-edge
-[
-source 93
-target 92
-label "3.000000"
-]
-edge
-[
-source 94
-target 34
-label "34.000000"
-]
-edge
-[
-source 94
-target 56
-label "76.000000"
-]
-edge
-[
-source 95
-target 27
-label "49.000000"
-]
-edge
-[
-source 96
-target 32
-label "18.000000"
-]
-edge
-[
-source 96
-target 41
-label "36.000000"
-]
-edge
-[
-source 96
-target 70
-label "60.000000"
-]
-edge
-[
-source 96
-target 73
-label "99.000000"
-]
-edge
-[
-source 97
-target 32
-label "76.000000"
-]
-edge
-[
-source 97
-target 49
-label "8.000000"
-]
-edge
-[
-source 97
-target 57
-label "10.000000"
-]
-edge
-[
-source 97
-target 80
-label "63.000000"
-]
-edge
-[
-source 98
-target 27
-label "98.000000"
-]
-edge
-[
-source 98
-target 33
-label "25.000000"
-]
-edge
-[
-source 98
-target 61
-label "51.000000"
-]
-edge
-[
-source 99
+source 9
 target 1
 label "53.000000"
 ]
 edge
 [
-source 99
+source 9
+target 21
+label "5.000000"
+]
+edge
+[
+source 9
+target 52
+label "52.000000"
+]
+edge
+[
+source 9
+target 69
+label "24.000000"
+]
+edge
+[
+source 10
+target 18
+label "90.000000"
+]
+edge
+[
+source 10
+target 72
+label "75.000000"
+]
+edge
+[
+source 11
+target 80
+label "33.000000"
+]
+edge
+[
+source 12
+target 0
+label "47.000000"
+]
+edge
+[
+source 12
+target 32
+label "25.000000"
+]
+edge
+[
+source 12
+target 34
+label "30.000000"
+]
+edge
+[
+source 12
+target 61
+label "70.000000"
+]
+edge
+[
+source 12
+target 75
+label "19.000000"
+]
+edge
+[
+source 12
+target 85
+label "58.000000"
+]
+edge
+[
+source 13
+target 23
+label "14.000000"
+]
+edge
+[
+source 13
+target 50
+label "84.000000"
+]
+edge
+[
+source 13
+target 80
+label "73.000000"
+]
+edge
+[
+source 14
+target 33
+label "34.000000"
+]
+edge
+[
+source 15
+target 30
+label "70.000000"
+]
+edge
+[
+source 15
+target 63
+label "20.000000"
+]
+edge
+[
+source 15
+target 71
+label "76.000000"
+]
+edge
+[
+source 15
+target 89
+label "66.000000"
+]
+edge
+[
+source 16
+target 26
+label "30.000000"
+]
+edge
+[
+source 17
+target 73
+label "14.000000"
+]
+edge
+[
+source 18
+target 10
+label "90.000000"
+]
+edge
+[
+source 18
+target 25
+label "27.000000"
+]
+edge
+[
+source 18
+target 37
+label "68.000000"
+]
+edge
+[
+source 19
+target 57
+label "77.000000"
+]
+edge
+[
+source 19
+target 62
+label "65.000000"
+]
+edge
+[
+source 19
+target 67
+label "62.000000"
+]
+edge
+[
+source 20
+target 35
+label "36.000000"
+]
+edge
+[
+source 20
+target 73
+label "47.000000"
+]
+edge
+[
+source 20
+target 80
+label "49.000000"
+]
+edge
+[
+source 20
+target 81
+label "20.000000"
+]
+edge
+[
+source 20
+target 97
+label "5.000000"
+]
+edge
+[
+source 21
+target 9
+label "5.000000"
+]
+edge
+[
+source 21
+target 79
+label "13.000000"
+]
+edge
+[
+source 22
+target 99
+label "61.000000"
+]
+edge
+[
+source 23
+target 13
+label "14.000000"
+]
+edge
+[
+source 23
+target 38
+label "28.000000"
+]
+edge
+[
+source 23
+target 77
+label "67.000000"
+]
+edge
+[
+source 24
+target 25
+label "29.000000"
+]
+edge
+[
+source 24
+target 52
+label "84.000000"
+]
+edge
+[
+source 24
+target 54
+label "13.000000"
+]
+edge
+[
+source 25
+target 18
+label "27.000000"
+]
+edge
+[
+source 25
+target 24
+label "29.000000"
+]
+edge
+[
+source 25
+target 46
+label "88.000000"
+]
+edge
+[
+source 26
+target 8
+label "49.000000"
+]
+edge
+[
+source 26
+target 16
+label "30.000000"
+]
+edge
+[
+source 26
+target 43
+label "61.000000"
+]
+edge
+[
+source 26
+target 50
+label "51.000000"
+]
+edge
+[
+source 26
+target 55
+label "36.000000"
+]
+edge
+[
+source 26
+target 67
+label "19.000000"
+]
+edge
+[
+source 26
+target 74
+label "22.000000"
+]
+edge
+[
+source 26
+target 99
+label "76.000000"
+]
+edge
+[
+source 27
+target 52
+label "63.000000"
+]
+edge
+[
+source 27
+target 87
+label "71.000000"
+]
+edge
+[
+source 28
+target 41
+label "97.000000"
+]
+edge
+[
+source 28
+target 64
+label "78.000000"
+]
+edge
+[
+source 28
+target 76
+label "10.000000"
+]
+edge
+[
+source 28
+target 81
+label "28.000000"
+]
+edge
+[
+source 28
+target 95
+label "82.000000"
+]
+edge
+[
+source 29
+target 83
+label "63.000000"
+]
+edge
+[
+source 29
+target 89
+label "94.000000"
+]
+edge
+[
+source 29
+target 97
+label "2.000000"
+]
+edge
+[
+source 30
+target 1
+label "26.000000"
+]
+edge
+[
+source 30
+target 7
+label "4.000000"
+]
+edge
+[
+source 30
+target 15
+label "70.000000"
+]
+edge
+[
+source 30
+target 84
+label "26.000000"
+]
+edge
+[
+source 31
+target 56
+label "92.000000"
+]
+edge
+[
+source 31
+target 89
+label "42.000000"
+]
+edge
+[
+source 31
+target 92
+label "57.000000"
+]
+edge
+[
+source 32
+target 12
+label "25.000000"
+]
+edge
+[
+source 32
+target 90
+label "98.000000"
+]
+edge
+[
+source 33
+target 14
+label "34.000000"
+]
+edge
+[
+source 33
+target 64
+label "97.000000"
+]
+edge
+[
+source 34
+target 12
+label "30.000000"
+]
+edge
+[
+source 34
+target 43
+label "12.000000"
+]
+edge
+[
+source 34
+target 70
+label "20.000000"
+]
+edge
+[
+source 35
+target 20
+label "36.000000"
+]
+edge
+[
+source 35
+target 46
+label "29.000000"
+]
+edge
+[
+source 35
+target 82
+label "88.000000"
+]
+edge
+[
+source 36
+target 45
+label "64.000000"
+]
+edge
+[
+source 36
+target 57
+label "36.000000"
+]
+edge
+[
+source 36
+target 82
+label "9.000000"
+]
+edge
+[
+source 37
+target 18
+label "68.000000"
+]
+edge
+[
+source 37
+target 61
+label "56.000000"
+]
+edge
+[
+source 37
+target 68
+label "4.000000"
+]
+edge
+[
+source 37
+target 76
+label "51.000000"
+]
+edge
+[
+source 37
+target 78
+label "30.000000"
+]
+edge
+[
+source 38
+target 23
+label "28.000000"
+]
+edge
+[
+source 38
+target 66
+label "84.000000"
+]
+edge
+[
+source 38
+target 85
+label "73.000000"
+]
+edge
+[
+source 39
+target 4
+label "39.000000"
+]
+edge
+[
+source 39
+target 43
+label "86.000000"
+]
+edge
+[
+source 39
+target 61
+label "40.000000"
+]
+edge
+[
+source 39
+target 95
+label "29.000000"
+]
+edge
+[
+source 40
+target 75
+label "67.000000"
+]
+edge
+[
+source 41
+target 0
+label "94.000000"
+]
+edge
+[
+source 41
+target 5
+label "13.000000"
+]
+edge
+[
+source 41
+target 28
+label "97.000000"
+]
+edge
+[
+source 41
+target 81
+label "38.000000"
+]
+edge
+[
+source 42
+target 5
+label "93.000000"
+]
+edge
+[
+source 42
+target 44
+label "55.000000"
+]
+edge
+[
+source 42
+target 46
+label "76.000000"
+]
+edge
+[
+source 42
+target 53
+label "2.000000"
+]
+edge
+[
+source 42
+target 79
+label "69.000000"
+]
+edge
+[
+source 42
+target 96
+label "100.000000"
+]
+edge
+[
+source 43
+target 26
+label "61.000000"
+]
+edge
+[
+source 43
+target 34
+label "12.000000"
+]
+edge
+[
+source 43
+target 39
+label "86.000000"
+]
+edge
+[
+source 44
+target 42
+label "55.000000"
+]
+edge
+[
+source 45
+target 0
+label "25.000000"
+]
+edge
+[
+source 45
+target 2
+label "96.000000"
+]
+edge
+[
+source 45
+target 36
+label "64.000000"
+]
+edge
+[
+source 45
+target 85
+label "22.000000"
+]
+edge
+[
+source 46
+target 25
+label "88.000000"
+]
+edge
+[
+source 46
+target 35
+label "29.000000"
+]
+edge
+[
+source 46
+target 42
+label "76.000000"
+]
+edge
+[
+source 46
+target 75
+label "52.000000"
+]
+edge
+[
+source 47
+target 99
+label "96.000000"
+]
+edge
+[
+source 49
+target 88
+label "51.000000"
+]
+edge
+[
+source 49
+target 99
+label "91.000000"
+]
+edge
+[
+source 50
+target 13
+label "84.000000"
+]
+edge
+[
+source 50
+target 26
+label "51.000000"
+]
+edge
+[
+source 50
+target 60
+label "32.000000"
+]
+edge
+[
+source 51
+target 96
+label "23.000000"
+]
+edge
+[
+source 52
+target 6
+label "52.000000"
+]
+edge
+[
+source 52
+target 9
+label "52.000000"
+]
+edge
+[
+source 52
+target 24
+label "84.000000"
+]
+edge
+[
+source 52
+target 27
+label "63.000000"
+]
+edge
+[
+source 52
+target 53
+label "19.000000"
+]
+edge
+[
+source 52
+target 82
+label "47.000000"
+]
+edge
+[
+source 52
+target 88
+label "98.000000"
+]
+edge
+[
+source 53
+target 42
+label "2.000000"
+]
+edge
+[
+source 53
+target 52
+label "19.000000"
+]
+edge
+[
+source 54
+target 24
+label "13.000000"
+]
+edge
+[
+source 54
+target 66
+label "79.000000"
+]
+edge
+[
+source 55
+target 26
+label "36.000000"
+]
+edge
+[
+source 55
+target 86
+label "32.000000"
+]
+edge
+[
+source 55
+target 92
+label "93.000000"
+]
+edge
+[
+source 56
+target 31
+label "92.000000"
+]
+edge
+[
+source 57
+target 19
+label "77.000000"
+]
+edge
+[
+source 57
+target 36
+label "36.000000"
+]
+edge
+[
+source 58
+target 93
+label "72.000000"
+]
+edge
+[
+source 58
+target 96
+label "89.000000"
+]
+edge
+[
+source 59
+target 60
+label "89.000000"
+]
+edge
+[
+source 59
+target 63
+label "58.000000"
+]
+edge
+[
+source 59
+target 71
+label "69.000000"
+]
+edge
+[
+source 60
+target 50
+label "32.000000"
+]
+edge
+[
+source 60
+target 59
+label "89.000000"
+]
+edge
+[
+source 60
+target 95
+label "13.000000"
+]
+edge
+[
+source 61
+target 0
+label "28.000000"
+]
+edge
+[
+source 61
+target 5
+label "78.000000"
+]
+edge
+[
+source 61
+target 12
+label "70.000000"
+]
+edge
+[
+source 61
+target 37
+label "56.000000"
+]
+edge
+[
+source 61
+target 39
+label "40.000000"
+]
+edge
+[
+source 61
+target 69
+label "81.000000"
+]
+edge
+[
+source 61
+target 80
+label "20.000000"
+]
+edge
+[
+source 62
+target 19
+label "65.000000"
+]
+edge
+[
+source 62
+target 66
+label "83.000000"
+]
+edge
+[
+source 62
+target 95
+label "89.000000"
+]
+edge
+[
+source 63
+target 15
+label "20.000000"
+]
+edge
+[
+source 63
+target 59
+label "58.000000"
+]
+edge
+[
+source 63
+target 98
+label "6.000000"
+]
+edge
+[
+source 64
+target 28
+label "78.000000"
+]
+edge
+[
+source 64
+target 33
+label "97.000000"
+]
+edge
+[
+source 65
+target 87
+label "69.000000"
+]
+edge
+[
+source 66
+target 38
+label "84.000000"
+]
+edge
+[
+source 66
+target 54
+label "79.000000"
+]
+edge
+[
+source 66
+target 62
+label "83.000000"
+]
+edge
+[
+source 67
+target 0
+label "84.000000"
+]
+edge
+[
+source 67
+target 8
+label "39.000000"
+]
+edge
+[
+source 67
+target 19
+label "62.000000"
+]
+edge
+[
+source 67
+target 26
+label "19.000000"
+]
+edge
+[
+source 67
+target 71
+label "31.000000"
+]
+edge
+[
+source 68
+target 37
+label "4.000000"
+]
+edge
+[
+source 68
+target 92
+label "73.000000"
+]
+edge
+[
+source 69
+target 9
+label "24.000000"
+]
+edge
+[
+source 69
+target 61
+label "81.000000"
+]
+edge
+[
+source 70
+target 34
+label "20.000000"
+]
+edge
+[
+source 71
+target 15
+label "76.000000"
+]
+edge
+[
+source 71
+target 59
+label "69.000000"
+]
+edge
+[
+source 71
+target 67
+label "31.000000"
+]
+edge
+[
+source 72
+target 10
+label "75.000000"
+]
+edge
+[
+source 72
+target 82
+label "12.000000"
+]
+edge
+[
+source 72
+target 86
+label "86.000000"
+]
+edge
+[
+source 72
+target 94
+label "47.000000"
+]
+edge
+[
+source 73
+target 4
+label "79.000000"
+]
+edge
+[
+source 73
 target 17
-label "37.000000"
+label "14.000000"
+]
+edge
+[
+source 73
+target 20
+label "47.000000"
+]
+edge
+[
+source 73
+target 84
+label "7.000000"
+]
+edge
+[
+source 74
+target 26
+label "22.000000"
+]
+edge
+[
+source 74
+target 81
+label "17.000000"
+]
+edge
+[
+source 75
+target 12
+label "19.000000"
+]
+edge
+[
+source 75
+target 40
+label "67.000000"
+]
+edge
+[
+source 75
+target 46
+label "52.000000"
+]
+edge
+[
+source 76
+target 28
+label "10.000000"
+]
+edge
+[
+source 76
+target 37
+label "51.000000"
+]
+edge
+[
+source 77
+target 23
+label "67.000000"
+]
+edge
+[
+source 77
+target 88
+label "6.000000"
+]
+edge
+[
+source 78
+target 37
+label "30.000000"
+]
+edge
+[
+source 78
+target 87
+label "50.000000"
+]
+edge
+[
+source 79
+target 21
+label "13.000000"
+]
+edge
+[
+source 79
+target 42
+label "69.000000"
+]
+edge
+[
+source 80
+target 11
+label "33.000000"
+]
+edge
+[
+source 80
+target 13
+label "73.000000"
+]
+edge
+[
+source 80
+target 20
+label "49.000000"
+]
+edge
+[
+source 80
+target 61
+label "20.000000"
+]
+edge
+[
+source 80
+target 94
+label "29.000000"
+]
+edge
+[
+source 81
+target 20
+label "20.000000"
+]
+edge
+[
+source 81
+target 28
+label "28.000000"
+]
+edge
+[
+source 81
+target 41
+label "38.000000"
+]
+edge
+[
+source 81
+target 74
+label "17.000000"
+]
+edge
+[
+source 81
+target 85
+label "73.000000"
+]
+edge
+[
+source 81
+target 90
+label "29.000000"
+]
+edge
+[
+source 82
+target 1
+label "32.000000"
+]
+edge
+[
+source 82
+target 35
+label "88.000000"
+]
+edge
+[
+source 82
+target 36
+label "9.000000"
+]
+edge
+[
+source 82
+target 52
+label "47.000000"
+]
+edge
+[
+source 82
+target 72
+label "12.000000"
+]
+edge
+[
+source 83
+target 29
+label "63.000000"
+]
+edge
+[
+source 84
+target 30
+label "26.000000"
+]
+edge
+[
+source 84
+target 73
+label "7.000000"
+]
+edge
+[
+source 85
+target 12
+label "58.000000"
+]
+edge
+[
+source 85
+target 38
+label "73.000000"
+]
+edge
+[
+source 85
+target 45
+label "22.000000"
+]
+edge
+[
+source 85
+target 81
+label "73.000000"
+]
+edge
+[
+source 86
+target 1
+label "80.000000"
+]
+edge
+[
+source 86
+target 8
+label "69.000000"
+]
+edge
+[
+source 86
+target 55
+label "32.000000"
+]
+edge
+[
+source 86
+target 72
+label "86.000000"
+]
+edge
+[
+source 87
+target 27
+label "71.000000"
+]
+edge
+[
+source 87
+target 65
+label "69.000000"
+]
+edge
+[
+source 87
+target 78
+label "50.000000"
+]
+edge
+[
+source 88
+target 49
+label "51.000000"
+]
+edge
+[
+source 88
+target 52
+label "98.000000"
+]
+edge
+[
+source 88
+target 77
+label "6.000000"
+]
+edge
+[
+source 89
+target 15
+label "66.000000"
+]
+edge
+[
+source 89
+target 29
+label "94.000000"
+]
+edge
+[
+source 89
+target 31
+label "42.000000"
+]
+edge
+[
+source 90
+target 32
+label "98.000000"
+]
+edge
+[
+source 90
+target 81
+label "29.000000"
+]
+edge
+[
+source 91
+target 1
+label "5.000000"
+]
+edge
+[
+source 92
+target 2
+label "95.000000"
+]
+edge
+[
+source 92
+target 31
+label "57.000000"
+]
+edge
+[
+source 92
+target 55
+label "93.000000"
+]
+edge
+[
+source 92
+target 68
+label "73.000000"
+]
+edge
+[
+source 93
+target 7
+label "95.000000"
+]
+edge
+[
+source 93
+target 58
+label "72.000000"
+]
+edge
+[
+source 93
+target 96
+label "81.000000"
+]
+edge
+[
+source 94
+target 72
+label "47.000000"
+]
+edge
+[
+source 94
+target 80
+label "29.000000"
+]
+edge
+[
+source 95
+target 4
+label "48.000000"
+]
+edge
+[
+source 95
+target 28
+label "82.000000"
+]
+edge
+[
+source 95
+target 39
+label "29.000000"
+]
+edge
+[
+source 95
+target 60
+label "13.000000"
+]
+edge
+[
+source 95
+target 62
+label "89.000000"
+]
+edge
+[
+source 96
+target 8
+label "95.000000"
+]
+edge
+[
+source 96
+target 42
+label "100.000000"
+]
+edge
+[
+source 96
+target 51
+label "23.000000"
+]
+edge
+[
+source 96
+target 58
+label "89.000000"
+]
+edge
+[
+source 96
+target 93
+label "81.000000"
+]
+edge
+[
+source 97
+target 20
+label "5.000000"
+]
+edge
+[
+source 97
+target 29
+label "2.000000"
+]
+edge
+[
+source 98
+target 63
+label "6.000000"
+]
+edge
+[
+source 99
+target 22
+label "61.000000"
+]
+edge
+[
+source 99
+target 26
+label "76.000000"
+]
+edge
+[
+source 99
+target 47
+label "96.000000"
+]
+edge
+[
+source 99
+target 49
+label "91.000000"
 ]
 ]
