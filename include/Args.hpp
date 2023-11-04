@@ -28,7 +28,8 @@ void checkArgs(std::map<std::string, std::vector<std::string>> args) {
     }
 }
 
-void runGraph(std::map<std::string, std::vector<std::string>> args) {
+void runGraphArgs(std::map<std::string, std::vector<std::string>> args) {
+    Logger::debug("Running graph args");
 
     int n = 1000;
     double p = .01;
@@ -54,7 +55,7 @@ void runGraph(std::map<std::string, std::vector<std::string>> args) {
             Logger::error("Too many arguments for -p");
             exit(1);
         }
-        if (Utils::isNumber(pArgs[0])) {
+        if (Utils::isDouble(pArgs[0])) {
             p = std::stod(pArgs[0]);
         } else {
             Logger::error("Argument for -p is not a number");

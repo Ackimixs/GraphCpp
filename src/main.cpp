@@ -4,6 +4,7 @@
 #include "../include/Args.hpp"
 
 int main(int argv, char **argc) {
+    // TODO add log everywhere (with log level)
 
     // Convert argv to map
     std::map<std::string, std::vector<std::string>> args;
@@ -27,7 +28,7 @@ int main(int argv, char **argc) {
 
     Logger::debug("Graph v" + std::string(GRAPH_VERSION) + " started !");
 
-    runGraph(args);
+    runGraphArgs(args);
 
 //    List::Graph g(6);
 //
