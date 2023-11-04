@@ -3,6 +3,7 @@
 #include "../include/gmlFile.hpp"
 
 #include <map>
+#include <chrono>
 
 void runGraphTester(std::map<std::string, std::string>);
 
@@ -18,10 +19,7 @@ int main(int argv, char **argc) {
         }
     }
 
-
-    if (args.contains("-n") || args.contains("-p") || args.contains("-o")) {
-        runGraphTester(args);
-    }
+    runGraphTester(args);
 
 //    List::Graph g(6);
 //
@@ -182,15 +180,65 @@ int main(int argv, char **argc) {
 
 void runGraphTester(std::map<std::string, std::string> args) {
 
-    int n;
-    double p;
-    std::string filename;
+    if (args.contains("-o")) {
 
-    n = args.contains("-n") ? std::stoi(args["-n"]) : 1000;
-    p = args.contains("-p") ? std::stod(args["-p"]) : .01;
-    filename = args.contains("-o") ? args["-o"] : "graph.gml";
+        std::string filename;
 
-    List::Graph g = List::Graph::createRandomGraph(n, Type::Graph::UNDIRECTED, p, true);
 
-    toGmlFile(filename, g);
+        filename = args["-o"];
+
+        List::Graph g = List::Graph::createRandomGraph(n, Type::Graph::UNDIRECTED, p, true);
+
+        toGmlFile(filename, g);
+    }
+
+    if (args.contains("-algo")) {
+        std::string algo = args["-algo"];
+
+        if (algo == "bfs") {
+
+            int n;
+            double p;
+
+            n = args.contains("-n") ? std::stoi(args["-n"]) : 1000;
+            p = args.contains("-p") ? std::stod(args["-p"]) : .01;
+
+            List::Graph g = List::Graph::createRandomGraph(n, Type::Graph::UNDIRECTED, p, true);
+
+            auto start = std::chrono::high_resolution_clock::now();
+
+            auto vec = g.BFS();
+
+            auto end = std::chrono::high_resolution_clock::now();
+
+            for (auto i : vec) {
+                std::cout << i << ", ";
+            }
+
+            std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << std::endl;
+
+        } else if (algo == "dfs") {
+
+            int n;
+            double p;
+
+            n = args.contains("-n") ? std::stoi(args["-n"]) : 1000;
+            p = args.contains("-p") ? std::stod(args["-p"]) : .01;
+
+            List::Graph g = List::Graph::createRandomGraph(n, Type::Graph::UNDIRECTED, p, true);
+
+            auto start = std::chrono::high_resolution_clock::now();
+
+            auto vec = g.DFS();
+
+            auto end = std::chrono::high_resolution_clock::now();
+
+            for (auto i : vec) {
+                std::cout << i << ", ";
+            }
+
+            std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << std::endl;
+
+        }
+    }
 }

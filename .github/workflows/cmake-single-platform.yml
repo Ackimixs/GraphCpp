@@ -137,3 +137,50 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: result
           force: true
+
+
+  bfs-algo:
+    needs: [build]
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Configure CMake
+        working-directory: ${{github.workspace}}/tests
+
+        run: cmake -S . -B build
+
+      - name: Build
+        working-directory: ${{github.workspace}}/tests
+
+        run: cmake --build build --config ${{env.BUILD_TYPE}}
+
+      - name: run bfs
+        working-directory: ${{github.workspace}}/tests/build
+
+        run: ./ggraph -algo bfs -n 100 -p 0.03
+
+  dfs-algo:
+    needs: [build]
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Configure CMake
+        working-directory: ${{github.workspace}}/tests
+
+        run: cmake -S . -B build
+
+      - name: Build
+        working-directory: ${{github.workspace}}/tests
+
+        run: cmake --build build --config ${{env.BUILD_TYPE}}
+
+      - name: run dfs
+        working-directory: ${{github.workspace}}/tests/build
+
+        run: ./ggraph -algo dfs -n 100 -p 0.03
