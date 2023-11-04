@@ -228,6 +228,12 @@ jobs:
           name: big_n_big_p
           path: ${{github.workspace}}
 
+      - name: Download
+        uses: actions/download-artifact@v3.0.2
+        with:
+          name: middle_n_middle_p
+          path: ${{github.workspace}}
+
       - name: Commit file
         working-directory: ${{github.workspace}}
         run: |
