@@ -217,6 +217,10 @@ void runGraphTester(std::map<std::string, std::string> args) {
                 std::cout << i << ", ";
             }
 
+            std::cout << std::endl;
+
+            std::cout << "Time to execute BFS : ";
+
             std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << std::endl;
 
         } else if (algo == "dfs") {
@@ -238,6 +242,10 @@ void runGraphTester(std::map<std::string, std::string> args) {
             for (auto i : vec) {
                 std::cout << i << ", ";
             }
+
+            std::cout << std::endl;
+
+            std::cout << "Time to execute DFS : ";
 
             std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << std::endl;
 
