@@ -205,25 +205,25 @@ jobs:
           git pull
 
       - name: Download
-        uses: actions/download-artifact@v2.1.1
+        uses: actions/download-artifact@v3.0.2
         with:
           name: little_n_little_p
           path: ${{github.workspace}}
 
       - name: Download
-        uses: actions/download-artifact@v2.1.1
+        uses: actions/download-artifact@v3.0.2
         with:
           name: little_n_big_p
           path: ${{github.workspace}}
 
       - name: Download
-        uses: actions/download-artifact@v2.1.1
+        uses: actions/download-artifact@v3.0.2
         with:
           name: big_n_little_p
           path: ${{github.workspace}}
 
       - name: Download
-        uses: actions/download-artifact@v2.1.1
+        uses: actions/download-artifact@v3.0.2
         with:
           name: big_n_big_p
           path: ${{github.workspace}}
@@ -242,3 +242,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: result
           force: true
+
+
+
+          
