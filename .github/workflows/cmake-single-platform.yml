@@ -107,7 +107,7 @@ jobs:
       - name: Run Black Hole Graph
         working-directory: ${{github.workspace}}/build
 
-        run: ./ggraph -n 1000 --template black_hole -o graph-results/black_hole.gml
+        run: ./ggraph -n 1000 --template black-hole -o graph-results/black-hole.gml
 
       - name: Run Bipartite Graph
         working-directory: ${{github.workspace}}/build
