@@ -160,7 +160,7 @@ jobs:
       - name: run bfs
         working-directory: ${{github.workspace}}/build
 
-        run: ./ggraph -algo bfs -n 10000 -p 0.002
+        run: ./ggraph --algo bfs -n 10000 -p 0.002
 
   dfs-algo:
     needs: [build]
@@ -183,4 +183,4 @@ jobs:
       - name: run dfs
         working-directory: ${{github.workspace}}/build
 
-        run: ./ggraph -algo dfs -n 10000 -p 0.002
+        run: ./ggraph --algo dfs -n 10000 -p 0.002
