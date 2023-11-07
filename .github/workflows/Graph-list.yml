@@ -139,7 +139,7 @@ jobs:
 
       - name: Go to result branch
         run: |
-          git checkout result
+          git checkout result-list
           git pull
 
       - name: Download
@@ -160,7 +160,7 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: result
+          branch: result-matrix
           force: true
 
 
