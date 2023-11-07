@@ -1,4 +1,4 @@
-name: CMake on a single platform
+name: Graph with list structure
 
 on:
   push:
@@ -21,25 +21,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: check version
-      run: cmake --version && g++ --version
+      - name: check version
+        run: cmake --version && g++ --version
 
-    - name: Configure CMake
-      working-directory: ${{github.workspace}}/tests
+      - name: Configure CMake
+        working-directory: ${{github.workspace}}/tests
 
-      run: cmake -S . -B build
+        run: cmake -S . -B build
 
-    - name: Build
-      working-directory: ${{github.workspace}}/tests
+      - name: Build
+        working-directory: ${{github.workspace}}/tests
 
-      run: cmake --build build --config ${{env.BUILD_TYPE}}
+        run: cmake --build build --config ${{env.BUILD_TYPE}}
 
-    - name: Test
-      working-directory: ${{github.workspace}}/tests/build
+      - name: Test
+        working-directory: ${{github.workspace}}/tests/build
 
-      run: ctest -C ${{env.BUILD_TYPE}} -V
+        run: ctest -C ${{env.BUILD_TYPE}} -V
 
 
   run-graph:
@@ -67,57 +67,57 @@ jobs:
       - name: Run little_n_little_p
         working-directory: ${{github.workspace}}/build
 
-        run: ./ggraph -n 100 -p 0.03 -o graph-results/little_n_little_p.gml
+        run: ./ggraph matrix -n 100 -p 0.03 -o graph-results/little_n_little_p.gml
 
       - name: Run middle_n_middle_p
         working-directory: ${{github.workspace}}/build
 
-        run: ./ggraph -n 500 -p 0.01 -o graph-results/middle_n_middle_p.gml
+        run: ./ggraph matrix -n 500 -p 0.01 -o graph-results/middle_n_middle_p.gml
 
       - name: Run little_n_big_p
         working-directory: ${{github.workspace}}/build
 
-        run: ./ggraph -n 100 -p 0.3 -o graph-results/little_n_big_p.gml
+        run: ./ggraph matrix -n 100 -p 0.3 -o graph-results/little_n_big_p.gml
 
       - name: Run big_n_little_p
         working-directory: ${{github.workspace}}/build
 
-        run: ./ggraph -n 1000 -p 0.001 -o graph-results/big_n_little_p.gml
+        run: ./ggraph matrix -n 1000 -p 0.001 -o graph-results/big_n_little_p.gml
 
       - name: Run big_n_big_p
         working-directory: ${{github.workspace}}/build
 
-        run: ./ggraph -n 1000 -p 0.3 -o graph-results/big_n_big_p.gml
+        run: ./ggraph matrix -n 1000 -p 0.3 -o graph-results/big_n_big_p.gml
 
       - name: Run middle_n_middle_p
         working-directory: ${{github.workspace}}/build
 
-        run: ./ggraph -n 500 -p 0.01 -o graph-results/middle_n_middle_p.gml
+        run: ./ggraph matrix -n 500 -p 0.01 -o graph-results/middle_n_middle_p.gml
 
       - name: Run Cycle Graph
         working-directory: ${{github.workspace}}/build
 
-        run: ./ggraph -n 1000 --template cycle -o graph-results/cycle.gml
+        run: ./ggraph matrix -n 1000 --template cycle -o graph-results/cycle.gml
 
       - name: Run Star Graph
         working-directory: ${{github.workspace}}/build
 
-        run: ./ggraph -n 1000 --template star -o graph-results/star.gml
+        run: ./ggraph matrix -n 1000 --template star -o graph-results/star.gml
 
       - name: Run Black Hole Graph
         working-directory: ${{github.workspace}}/build
 
-        run: ./ggraph -n 1000 --template black-hole -o graph-results/black-hole.gml
+        run: ./ggraph matrix -n 1000 --template black-hole -o graph-results/black-hole.gml
 
       - name: Run Bipartite Graph
         working-directory: ${{github.workspace}}/build
 
-        run: ./ggraph -n 1000 --template bipartite -o graph-results/bipartite.gml
+        run: ./ggraph matrix -n 1000 --template bipartite -o graph-results/bipartite.gml
 
       - name: Run complete Graph
         working-directory: ${{github.workspace}}/build
 
-        run: ./ggraph -n 1000 --template complete -o graph-results/complete.gml
+        run: ./ggraph matrix -n 1000 --template complete -o graph-results/complete.gml
 
       - name: Upload results
         uses: actions/upload-artifact@v3
@@ -185,7 +185,7 @@ jobs:
       - name: run bfs
         working-directory: ${{github.workspace}}/build
 
-        run: ./ggraph --algo bfs -n 10000 -p 0.002 --debug
+        run: ./ggraph matrix --algo bfs -n 10000 -p 0.002 --debug
 
   dfs-algo:
     needs: [build]
@@ -208,4 +208,4 @@ jobs:
       - name: run dfs
         working-directory: ${{github.workspace}}/build
 
-        run: ./ggraph --algo dfs -n 10000 -p 0.002 --debug
+        run: ./ggraph matrix --algo dfs -n 10000 -p 0.002 --debug

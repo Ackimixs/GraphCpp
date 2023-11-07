@@ -209,11 +209,7 @@ List::Graph<T>::Graph() : _d(Type::Graph::UNDIRECTED), _size(0) {}
 
 template<typename T>
 List::Graph<T>::Graph(int size, Type::Graph directed) :  _d(directed), _size(size) {
-    std::stringstream ss;
-
-    ss << "Creating a " << (directed == Type::UNDIRECTED ? "undirected" : "directed") << " graph with " << std::to_string(size) << " vertices...";
-
-    Logger::debug(ss.str());
+    Logger::debug("Creating graph of size " + std::to_string(size) + " and type ...");
 
     this->adjList = std::vector<std::vector<std::pair<T, T>>>(size);
 }
@@ -375,8 +371,6 @@ void List::Graph<T>::DFSVisitStack(T v, std::vector<Color> &color, std::vector<T
 
 template<typename T>
 List::Graph<T> List::Graph<T>::createRandomGraph(int numberOfVertices, Type::Graph directed, double edgeProbability, bool includeRandomWeight) {
-    std::stringstream ss;
-
     Logger::debug("Creating random graph with " + std::to_string(numberOfVertices) + " vertices and edge probability " + std::to_string(edgeProbability) + "...");
 
     if (numberOfVertices <= 0 || edgeProbability < 0.0 || edgeProbability > 1.0) {
