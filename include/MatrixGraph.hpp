@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Matrix.hpp"
+#include "Logger.hpp"
 
 #include <optional>
 #include <random>
@@ -8,10 +9,11 @@
 #include <queue>
 
 namespace Matrix {
-    template< size_t N, typename T = double >
-    class Graph : public adjacentMatrix<N, T> {
+    template<typename T>
+    class Graph : public adjacentMatrix<T> {
     private:
         Type::Graph _d;
+        size_t _size;
 
     protected:
         void BFSVisit(T v, std::vector<Color> &color, std::vector<T> &parent, std::vector<T> &res);
@@ -29,12 +31,14 @@ namespace Matrix {
         std::optional<std::pair<T, std::vector<T>>> pathVisit(T v, std::vector<Color> &color, std::vector<T> &parent, std::pair<T, std::vector<T>> path, std::pair<T, T> &param);
 
     public:
+        Graph();
+
         /**
          * @brief Create a graph
          * @param n -> the size of the graph
          * @param directed -> the type of the graph DIRECTED or UNDIRECTED, default UNDIRECTED
          */
-        Graph(Type::Graph directed = Type::Graph::UNDIRECTED);
+        Graph(int size, Type::Graph directed = Type::Graph::UNDIRECTED);
 
         /**
          * @brief Create a graph from a matrix
@@ -50,11 +54,21 @@ namespace Matrix {
          * @param includeRandomWeight -> if true the weight of the edge will be random, default false
          * @return the random graph
          */
-        static Graph createRandomGraph(Type::Graph directed = Type::Graph::UNDIRECTED, double edgeProbability = 0.5, bool includeRandomWeight = false);
+        static Graph createRandomGraph(int numberOfVertices, Type::Graph directed = Type::Graph::UNDIRECTED, double edgeProbability = 0.5, bool includeRandomWeight = false);
+
+        static Graph<T> createCycleGraph(int numberOfVertices, Type::Graph directed = Type::Graph::UNDIRECTED, bool includeRandomWeight = false);
+
+        static Graph<T> createBlackHoleGraph(int numberOfVertices, Type::Graph directed = Type::Graph::DIRECTED, bool includeRandomWeight = false, T blackHole = 0);
+
+        static Graph<T> createCompleteGraph(int numberOfVertices, Type::Graph directed = Type::Graph::UNDIRECTED, bool includeRandomWeight = false);
+
+        static Graph<T> createBipartiteGraph(int numberOfVertices, Type::Graph directed = Type::Graph::UNDIRECTED, bool includeRandomWeight = false);
+
+        static Graph<T> createStarGraph(int numberOfVertices, Type::Graph directed = Type::Graph::UNDIRECTED, bool includeRandomWeight = false);
 
         ~Graph();
 
-        int size();
+        size_t size() const;
 
         [[nodiscard]] Type::Graph directed() const;
 
@@ -84,14 +98,14 @@ namespace Matrix {
          * @brief Get the BFS of the graph
          * @return a vector of the BFS
          */
-        std::vector<T> BFS();
+        std::vector<T> BFS(T start = 0);
 
         /**
          * @brief Get the DFS of the graph
          * @param type PREORDER or POSTORDER
          * @return a vector of the DFS
          */
-        std::vector<T> DFS(Type::Print type = Type::Print::PREORDER);
+        std::vector<T> DFS(T start = 0, Type::Print type = Type::Print::PREORDER);
 
         /**
          * @brief Check if the graph is bipartite
@@ -166,44 +180,51 @@ namespace Matrix {
          */
         std::optional<std::pair<T, std::pair<T, T>>> diameter();
 
-        M<N, N, T> matrixPath(T lenght);
+        M<T> matrixPath(T lenght);
 
-        M<N, N, T> matrixAllPath();
+        M<T> matrixAllPath();
+
+        std::vector<std::pair<T, T>> operator[](T vertex) const;
     };
 }
 
+template<typename T>
+Matrix::Graph<T>::Graph() : adjacentMatrix<T>(size_t(0)), _size(0), _d(Type::Graph::UNDIRECTED) {}
 
-
-template<size_t N, typename T>
-Matrix::Graph<N, T>::Graph(Type::Graph directed) : adjacentMatrix<N, T>(), _d(directed) {
+template<typename T>
+Matrix::Graph<T>::Graph(int size, Type::Graph directed) : adjacentMatrix<T>(size), _d(directed), _size(size) {
+    Logger::debug("Create a graph of size " + std::to_string(size) + " and type " + std::to_string(directed));
 }
 
-template<size_t N, typename T>
-Matrix::Graph<N, T>::Graph(const Graph &graph) : adjacentMatrix<N, T>(graph), _d(graph._d) {
+template<typename T>
+Matrix::Graph<T>::Graph(const Graph &graph) : adjacentMatrix<T>(graph), _d(graph._d), _size(graph._size) {
+    Logger::debug("Create a graph from copy");
 }
 
-template<size_t N, typename T>
-Matrix::Graph<N, T>::~Graph() {
+template<typename T>
+Matrix::Graph<T>::~Graph() {
+    Logger::debug("Delete a graph");
 }
 
-template<size_t N, typename T>
-void Matrix::Graph<N, T>::addEdge(T from, T to, T weight) {
+template<typename T>
+void Matrix::Graph<T>::addEdge(T from, T to, T weight) {
     this->set(from, to, std::make_pair(1, weight));
     if (this->_d == Type::Graph::UNDIRECTED) {
         this->set(to, from, std::make_pair(1, weight));
     }
 }
 
-template<size_t N, typename T>
-void Matrix::Graph<N, T>::removeEdge(T from, T to) {
+template<typename T>
+void Matrix::Graph<T>::removeEdge(T from, T to) {
+    Logger::debug("Remove edge from " + std::to_string(from) + " to " + std::to_string(to));
     this->set(from, to, std::make_pair(0, 0));
     if (this->_d == Type::Graph::UNDIRECTED) {
         this->set(to, from, std::make_pair(0, 0));
     }
 }
 
-template<size_t N, typename T>
-T Matrix::Graph<N, T>::degres(T vertex) {
+template<typename T>
+T Matrix::Graph<T>::degres(T vertex) {
     if (vertex < 0 || vertex > this->size()) {
         throw std::invalid_argument("'edge' must be between 0 and the size of the graph !");
     }
@@ -218,12 +239,15 @@ T Matrix::Graph<N, T>::degres(T vertex) {
     return res;
 }
 
-template<size_t N, typename T>
-std::vector<T> Matrix::Graph<N, T>::BFS() {
+template<typename T>
+std::vector<T> Matrix::Graph<T>::BFS(T start) {
+    Logger::debug("BFS algorithm starting...");
+
     std::vector<Color> color = std::vector<Color>(this->size(), Color::BLUE);
     std::vector<T> parent = std::vector<T>(this->size(), -1);
     std::vector<T> res;
 
+    this->BFSVisit(start, color, parent, res);
     for (size_t v = 0; v < this->size(); v++) {
         if (color[v] == Color::BLUE) {
             this->BFSVisit(v, color, parent, res);
@@ -233,8 +257,8 @@ std::vector<T> Matrix::Graph<N, T>::BFS() {
     return res;
 }
 
-template<size_t N, typename T>
-void Matrix::Graph<N, T>::BFSVisit(T v, std::vector<Color> &color, std::vector<T> &parent, std::vector<T> &res) {
+template<typename T>
+void Matrix::Graph<T>::BFSVisit(T v, std::vector<Color> &color, std::vector<T> &parent, std::vector<T> &res) {
     std::queue<T> q;
     color[v] = Color::WHITE;
     q.push(v);
@@ -242,7 +266,7 @@ void Matrix::Graph<N, T>::BFSVisit(T v, std::vector<Color> &color, std::vector<T
         int w = q.front();
         q.pop();
         for (size_t z = 0; z < this->size(); z++) {
-            if (this->operator()(v, z).first == 1) {
+            if (this->at(v, z).first == 1) {
                 if (color[z] == Color::BLUE) {
                     color[z] = Color::WHITE;
                     parent[z] = w;
@@ -255,12 +279,15 @@ void Matrix::Graph<N, T>::BFSVisit(T v, std::vector<Color> &color, std::vector<T
     }
 }
 
-template<size_t N, typename T>
-std::vector<T> Matrix::Graph<N, T>::DFS(Type::Print type) {
+template<typename T>
+std::vector<T> Matrix::Graph<T>::DFS(T start, Type::Print type) {
+    Logger::debug("DFS algorithm starting...");
+
     std::vector<Color> color = std::vector<Color>(this->size(), Color::BLUE);
     std::vector<T> parent = std::vector<T>(this->size(), -1);
     std::vector<T> res;
 
+    this->DFSVisit(start, color, parent, res, type);
     for (size_t v = 0; v < this->size(); v++) {
         if (color[v] == Color::BLUE) {
             this->DFSVisit(v, color, parent, res, type);
@@ -269,8 +296,8 @@ std::vector<T> Matrix::Graph<N, T>::DFS(Type::Print type) {
     return res;
 }
 
-template<size_t N, typename T>
-void Matrix::Graph<N, T>::DFSVisit(T v, std::vector<Color> &color, std::vector<T> &parent, std::vector<T> &res,
+template<typename T>
+void Matrix::Graph<T>::DFSVisit(T v, std::vector<Color> &color, std::vector<T> &parent, std::vector<T> &res,
                                 Type::Print type) {
     color[v] = Color::WHITE;
     if (type == Type::Print::PREORDER) {
@@ -290,8 +317,10 @@ void Matrix::Graph<N, T>::DFSVisit(T v, std::vector<Color> &color, std::vector<T
     }
 }
 
-template<size_t N, typename T>
-bool Matrix::Graph<N, T>::isBipartite() {
+template<typename T>
+bool Matrix::Graph<T>::isBipartite() {
+    Logger::debug("Check if the graph is bipartite...");
+
     std::vector<Color> color = std::vector<Color>(this->size(), Color::BLUE);
     std::vector<Color> partie = std::vector<Color>(this->size(), Color::NONE);
     std::vector<T> parent = std::vector<T>(this->size(), -1);
@@ -308,8 +337,8 @@ bool Matrix::Graph<N, T>::isBipartite() {
     return true;
 }
 
-template<size_t N, typename T>
-bool Matrix::Graph<N, T>::isBipartiteVisit(T v, std::vector<Color> &color, std::vector<T> &parent,
+template<typename T>
+bool Matrix::Graph<T>::isBipartiteVisit(T v, std::vector<Color> &color, std::vector<T> &parent,
                                         std::vector<Color> &partie) {
     std::queue<int> q;
     color[v] = Color::WHITE;
@@ -342,8 +371,10 @@ bool Matrix::Graph<N, T>::isBipartiteVisit(T v, std::vector<Color> &color, std::
     return true;
 }
 
-template<size_t N, typename T>
-std::optional<std::vector<T>> Matrix::Graph<N, T>::cycle() {
+template<typename T>
+std::optional<std::vector<T>> Matrix::Graph<T>::cycle() {
+    Logger::debug("Check if the graph has a cycle...");
+
     std::vector<Color> color = std::vector<Color>(this->size(), Color::BLUE);
     std::vector<T> parent = std::vector<T>(this->size(), -1);
     std::vector<T> cycle;
@@ -358,8 +389,8 @@ std::optional<std::vector<T>> Matrix::Graph<N, T>::cycle() {
     return std::nullopt;
 }
 
-template<size_t N, typename T>
-bool Matrix::Graph<N, T>::cycleVisit(T v, std::vector<Color> &color, std::vector<T> &parent, std::vector<T> &cycle,
+template<typename T>
+bool Matrix::Graph<T>::cycleVisit(T v, std::vector<Color> &color, std::vector<T> &parent, std::vector<T> &cycle,
                                   T prev) {
     color[v] = Color::WHITE;
     if (vectorUtils<T>::isInVector(cycle, v)) {
@@ -391,8 +422,10 @@ bool Matrix::Graph<N, T>::cycleVisit(T v, std::vector<Color> &color, std::vector
     return false;
 }
 
-template<size_t N, typename T>
-bool Matrix::Graph<N, T>::eulerianCycle() {
+template<typename T>
+bool Matrix::Graph<T>::eulerianCycle() {
+    Logger::debug("Check if the graph is eulerian...");
+
     for (size_t j = 0; j < this->size(); j++) {
         T res = 0;
         for (size_t i = 0; i < this->size(); i++) {
@@ -409,8 +442,9 @@ bool Matrix::Graph<N, T>::eulerianCycle() {
     return true;
 }
 
-template<size_t N, typename T>
-std::vector<T> Matrix::Graph<N, T>::distanceFrom(T v) {
+template<typename T>
+std::vector<T> Matrix::Graph<T>::distanceFrom(T v) {
+    Logger::debug("Distance from " + std::to_string(v) + " algorithm starting...");
     std::vector<Color> color = std::vector<Color>(this->size(), Color::BLUE);
     std::vector<T> parent = std::vector<T>(this->size(), -1);
     std::vector<T> distance = std::vector<T>(this->size());
@@ -420,8 +454,8 @@ std::vector<T> Matrix::Graph<N, T>::distanceFrom(T v) {
     return distance;
 }
 
-template<size_t N, typename T>
-void Matrix::Graph<N, T>::distanceFromSourceVisit(T v, std::vector<Color> &color, std::vector<T> &parent,
+template<typename T>
+void Matrix::Graph<T>::distanceFromSourceVisit(T v, std::vector<Color> &color, std::vector<T> &parent,
                                                std::vector<T> &distance) {
     std::queue<T> q;
     color[v] = Color::WHITE;
@@ -443,13 +477,14 @@ void Matrix::Graph<N, T>::distanceFromSourceVisit(T v, std::vector<Color> &color
     }
 }
 
-template<size_t N, typename T>
-std::vector<T> Matrix::Graph<N, T>::distanceFromSource() {
+template<typename T>
+std::vector<T> Matrix::Graph<T>::distanceFromSource() {
     return this->distanceFrom(0);
 }
 
-template<size_t N, typename T>
-std::pair<T, std::pair<T, T>> Matrix::Graph<N, T>::longestPath() {
+template<typename T>
+std::pair<T, std::pair<T, T>> Matrix::Graph<T>::longestPath() {
+    Logger::debug("Longest path algorithm starting...");
     if (this->_d != Type::DIRECTED) {
         std::cout << "" << std::endl;
         throw std::invalid_argument("The graph must be directed");
@@ -470,8 +505,8 @@ std::pair<T, std::pair<T, T>> Matrix::Graph<N, T>::longestPath() {
     return lPath;
 }
 
-template<size_t N, typename T>
-void Matrix::Graph<N, T>::longestPathVisit(T v, std::vector<Color> &color, std::vector<T> &parent,
+template<typename T>
+void Matrix::Graph<T>::longestPathVisit(T v, std::vector<Color> &color, std::vector<T> &parent,
                                         std::pair<T, std::pair<T, T>> &lPath,
                                         std::pair<T, std::pair<T, T>> actualPath, T previous) {
     color[v] = Color::WHITE;
@@ -496,8 +531,9 @@ void Matrix::Graph<N, T>::longestPathVisit(T v, std::vector<Color> &color, std::
     color[v] = Color::RED;
 }
 
-template<size_t N, typename T>
-std::optional<std::pair<T, std::vector<T>>> Matrix::Graph<N, T>::path(T from, T to) {
+template<typename T>
+std::optional<std::pair<T, std::vector<T>>> Matrix::Graph<T>::path(T from, T to) {
+    Logger::debug("Path algorithm starting...");
     if (from < 0 || from > this->size() || to < 0 || to > this->size()) {
         throw std::invalid_argument("int param have to be between 0 and the _size of the graph");
     }
@@ -510,9 +546,9 @@ std::optional<std::pair<T, std::vector<T>>> Matrix::Graph<N, T>::path(T from, T 
     return this->pathVisit(from, color, parent, path, param);
 }
 
-template<size_t N, typename T>
+template<typename T>
 std::optional<std::pair<T, std::vector<T>>>
-Matrix::Graph<N, T>::pathVisit(T v, std::vector<Color> &color, std::vector<T> &parent,
+Matrix::Graph<T>::pathVisit(T v, std::vector<Color> &color, std::vector<T> &parent,
                             std::pair<T, std::vector<T>> path, std::pair<T, T> &param) {
     color[v] = Color::WHITE;
     path.first += 1;
@@ -540,11 +576,13 @@ Matrix::Graph<N, T>::pathVisit(T v, std::vector<Color> &color, std::vector<T> &p
     return std::nullopt;
 }
 
-template<size_t N, typename T>
-std::optional<T> Matrix::Graph<N, T>::blackHole() {
+template<typename T>
+std::optional<T> Matrix::Graph<T>::blackHole() {
+    Logger::debug("Black hole algorithm starting...");
     int candidate = 0;
     for (size_t i = 1; i < this->size(); i++) {
-        if (this->_m[candidate * N + i].first == 1) {
+        if (this->_m[candidate * this->size() + i].first == 1) {
+            Logger::debug("New candidate : " + std::to_string(i) + " with " + std::to_string(this->_m[candidate * this->size() + i].first) + " edge(s)");
             candidate = i;
         }
     }
@@ -552,7 +590,8 @@ std::optional<T> Matrix::Graph<N, T>::blackHole() {
     bool Ok = true;
 
     for (size_t i = 1; i < this->size(); i++) {
-        if (this->_m[candidate * N + i].first == 1 || this->_m[i * N + candidate].first == 0) {
+        if (this->_m[candidate * this->size() + i].first == 1 || this->_m[i * this->size() + candidate].first == 0) {
+            Logger::debug("Candidate " + std::to_string(candidate) + " is not a black hole");
             Ok = false;
         }
     }
@@ -560,8 +599,8 @@ std::optional<T> Matrix::Graph<N, T>::blackHole() {
     return Ok ? std::optional<T>(candidate) : std::nullopt;
 }
 
-template<size_t N, typename T>
-std::optional<std::pair<T, T>> Matrix::Graph<N, T>::eccentricity(T v) {
+template<typename T>
+std::optional<std::pair<T, T>> Matrix::Graph<T>::eccentricity(T v) {
     std::optional<std::pair<T, T>> res;
 
     auto dist = this->distanceFrom(v);
@@ -575,8 +614,8 @@ std::optional<std::pair<T, T>> Matrix::Graph<N, T>::eccentricity(T v) {
     return res;
 }
 
-template<size_t N, typename T>
-std::optional<std::pair<T, std::pair<T, T>>> Matrix::Graph<N, T>::radius() {
+template<typename T>
+std::optional<std::pair<T, std::pair<T, T>>> Matrix::Graph<T>::radius() {
     std::optional<std::pair<T, std::pair<T, T>>> minEccentricity;
 
     for (size_t i = 0; i < this->size(); i++) {
@@ -589,8 +628,8 @@ std::optional<std::pair<T, std::pair<T, T>>> Matrix::Graph<N, T>::radius() {
     return minEccentricity;
 }
 
-template<size_t N, typename T>
-std::optional<std::pair<T, std::pair<T, T>>> Matrix::Graph<N, T>::diameter() {
+template<typename T>
+std::optional<std::pair<T, std::pair<T, T>>> Matrix::Graph<T>::diameter() {
     std::optional<std::pair<T, std::pair<T, T>>> minEccentricity;
 
     for (size_t i = 0; i < this->size(); i++) {
@@ -603,17 +642,17 @@ std::optional<std::pair<T, std::pair<T, T>>> Matrix::Graph<N, T>::diameter() {
     return minEccentricity;
 }
 
-template<size_t N, typename T>
-Matrix::M<N, N, T> Matrix::Graph<N, T>::matrixPath(T lenght) {
-    M<N, N, T> res;
+template<typename T>
+Matrix::M<T> Matrix::Graph<T>::matrixPath(T lenght) {
+    M<T> res(size(), size());
 
     res = (*this);
 
     return res^lenght;
 }
 
-template<size_t N, typename T>
-Matrix::M<N, N, T> Matrix::Graph<N, T>::matrixAllPath() {
+template<typename T>
+Matrix::M<T> Matrix::Graph<T>::matrixAllPath() {
     M temp(*this);
 
     for (size_t i = 1; i < this->size(); i++) {
@@ -623,10 +662,12 @@ Matrix::M<N, N, T> Matrix::Graph<N, T>::matrixAllPath() {
     return temp;
 }
 
-template<size_t N, typename T>
-Matrix::Graph<N, T> Matrix::Graph<N, T>::createRandomGraph(Type::Graph directed, double edgeProbability,
+template<typename T>
+Matrix::Graph<T> Matrix::Graph<T>::createRandomGraph(int numberOfVertices, Type::Graph directed, double edgeProbability,
                                                      bool includeRandomWeight) {
-    if (N <= 0 || edgeProbability < 0.0 || edgeProbability > 1.0) {
+    Logger::debug("Creating random graph with " + std::to_string(numberOfVertices) + " vertices.");
+
+    if (numberOfVertices <= 0 || edgeProbability < 0.0 || edgeProbability > 1.0) {
         throw std::invalid_argument("Invalid input parameters.");
     }
 
@@ -635,9 +676,9 @@ Matrix::Graph<N, T> Matrix::Graph<N, T>::createRandomGraph(Type::Graph directed,
     std::uniform_real_distribution<double> edgeDist(0.0, 1.0);
     std::uniform_int_distribution<int> weightDist(1, 100); // Random weight between 1 and 100
 
-    Matrix::Graph g = Matrix::Graph<N, T>(directed);
-    for (int i = 0; i < N; i++) {
-        for (int j = i + 1; j < N; j++) {
+    Matrix::Graph<T> g = Matrix::Graph<T>(numberOfVertices, directed);
+    for (int i = 0; i < numberOfVertices; i++) {
+        for (int j = i + 1; j < numberOfVertices; j++) {
             if (edgeDist(gen) < edgeProbability) {
                 int w = 1;
                 if (includeRandomWeight) {
@@ -651,12 +692,127 @@ Matrix::Graph<N, T> Matrix::Graph<N, T>::createRandomGraph(Type::Graph directed,
     return g;
 }
 
-template<size_t N, typename T>
-Type::Graph Matrix::Graph<N, T>::directed() const {
+template<typename T>
+Matrix::Graph<T> Matrix::Graph<T>::createCycleGraph(int numberOfVertices, Type::Graph directed, bool includeRandomWeight) {
+    Logger::debug("Creating cycle graph with " + std::to_string(numberOfVertices) + " vertices.");
+
+    if (numberOfVertices <= 0) {
+        throw std::invalid_argument("Invalid input parameters.");
+    }
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<T> weightDist(1, 100); // Random weight between 1 and 100
+
+
+    Matrix::Graph<T> g = Matrix::Graph<T>(numberOfVertices, directed);
+    for (int i = 0; i < numberOfVertices; i++) {
+        g.addEdge(i, (i + 1) % numberOfVertices, includeRandomWeight ? weightDist(gen) : 1);
+    }
+    return g;
+}
+
+template<typename T>
+Matrix::Graph<T> Matrix::Graph<T>::createBlackHoleGraph(int numberOfVertices, Type::Graph directed, bool includeRandomWeight, T blackHole) {
+    Logger::debug("Creating black hole graph with " + std::to_string(numberOfVertices) + " vertices.\nStarting black hole at " + std::to_string(blackHole));
+
+    if (numberOfVertices <= 0) {
+        throw std::invalid_argument("Invalid input parameters.");
+    }
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<T> weightDist(1, 100); // Random weight between 1 and 100
+
+    Matrix::Graph<T> g = Matrix::Graph<T>(numberOfVertices, directed);
+    for (T i = 0; i < numberOfVertices; i++) {
+        if (i != blackHole) {
+            g.addEdge(i, blackHole, includeRandomWeight ? weightDist(gen) : 1);
+        }
+    }
+    return g;
+}
+
+template<typename T>
+Matrix::Graph<T> Matrix::Graph<T>::createCompleteGraph(int numberOfVertices, Type::Graph directed, bool includeRandomWeight) {
+    Logger::debug("Creating complete graph with " + std::to_string(numberOfVertices) + " vertices.");
+
+    if (numberOfVertices <= 0) {
+        throw std::invalid_argument("Invalid input parameters.");
+    }
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<T> weightDist(1, 100); // Random weight between 1 and 100
+
+    Matrix::Graph<T> g = Matrix::Graph<T>(numberOfVertices, directed);
+    for (T i = 0; i < numberOfVertices; i++) {
+        for (T j = i + 1; j < numberOfVertices; j++) {
+            g.addEdge(i, j, includeRandomWeight ? weightDist(gen) : 1);
+        }
+    }
+    return g;
+}
+
+template<typename T>
+Matrix::Graph<T> Matrix::Graph<T>::createBipartiteGraph(int numberOfVertices, Type::Graph directed, bool includeRandomWeight) {
+    Logger::debug("Creating bipartite graph with " + std::to_string(numberOfVertices) + " vertices");
+
+    if (numberOfVertices <= 0) {
+        throw std::invalid_argument("Invalid input parameters.");
+    }
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<T> weightDist(1, 100); // Random weight between 1 and 100
+
+    Matrix::Graph<T> g = Matrix::Graph<T>(numberOfVertices, directed);
+    for (T i = 0; i < numberOfVertices / 2; i++) {
+        for (T j = numberOfVertices / 2; j < numberOfVertices; j++) {
+            g.addEdge(i, j, includeRandomWeight ? weightDist(gen) : 1);
+        }
+    }
+    return g;
+}
+
+template<typename T>
+Matrix::Graph<T> Matrix::Graph<T>::createStarGraph(int numberOfVertices, Type::Graph directed, bool includeRandomWeight) {
+    Logger::debug("Creating star graph with " + std::to_string(numberOfVertices) + " vertices");
+
+    if (numberOfVertices <= 0) {
+        throw std::invalid_argument("Invalid input parameters.");
+    }
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<T> weightDist(1, 100); // Random weight between 1 and 100
+
+    Matrix::Graph<T> g = Matrix::Graph<T>(numberOfVertices, directed);
+    for (T i = 1; i < numberOfVertices; i++) {
+        g.addEdge(0, i, includeRandomWeight ? weightDist(gen) : 1);
+    }
+    return g;
+}
+
+template<typename T>
+Type::Graph Matrix::Graph<T>::directed() const {
     return this->_d;
 }
 
-template<size_t N, typename T>
-int Matrix::Graph<N, T>::size() {
-    return N;
+template<typename T>
+size_t Matrix::Graph<T>::size() const {
+    return this->_size;
+}
+
+template<typename T>
+std::vector<std::pair<T, T>> Matrix::Graph<T>::operator[](T vertex) const {
+    std::vector<std::pair<T, T>> res;
+
+    for (size_t i = 0; i < this->size(); i++) {
+        if (this->at(vertex, i).first == 1) {
+            res.push_back(std::make_pair(i ,this->at(vertex, i).second));
+        }
+    }
+
+    return res;
 }

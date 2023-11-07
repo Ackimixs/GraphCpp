@@ -1,12 +1,17 @@
 #pragma once
 
+#include "ListGraph.hpp"
+#include "Logger.hpp"
+
 #include <fstream>
 #include <iostream>
 #include <string>
 #include <vector>
-#include "ListGraph.hpp"
 
-void toGmlFile(const std::string& filename, const List::Graph& graph) {
+template<typename G>
+void toGmlFile(const std::string& filename, const G& graph) {
+
+    Logger::debug("Writing graph to " + filename);
 
     std::ofstream outputFile(filename);
 
@@ -49,6 +54,6 @@ void toGmlFile(const std::string& filename, const List::Graph& graph) {
         outputFile << "]\n";
         outputFile.close();
     } else {
-        std::cerr << "Unable to open the file for writing." << std::endl;
+        Logger::error("Unable to open file " + filename);
     }
 }

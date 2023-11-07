@@ -1,23 +1,10 @@
 #pragma once
 
 #include "LogColor.hpp"
+#include "Utils.hpp"
 
 #include <iostream>
 #include <string>
-#include <chrono>
-
-std::string getCurrentDateTime() {
-    auto now = std::chrono::system_clock::now();
-    std::time_t time = std::chrono::system_clock::to_time_t(now);
-    std::tm* current_time = std::localtime(&time);
-
-    char buffer[20]; // Buffer to store the formatted date and time
-
-    // Format the date and time as "yyyy-MM-dd HH:mm:ss"
-    std::strftime(buffer, 20, "%Y-%m-%d %H:%M:%S", current_time);
-
-    return buffer;
-}
 
 enum class LogLevel {
     DEBUG,
@@ -32,7 +19,7 @@ class Logger {
 
     static void log(LogLevel level, const std::string &message) {
         if (level >= logLevel) {
-            std::cout << LogColor::bgBlack << LogColor::fgWhite << getCurrentDateTime() << LogColor::reset << " ";
+            std::cout << LogColor::bgBlack << LogColor::fgWhite << Utils::getCurrentDateTime() << LogColor::reset << " ";
 
             switch (level) {
                 case LogLevel::DEBUG:
@@ -99,5 +86,3 @@ public:
         log(LogLevel::CRITICAL, message);
     }
 };
-
-LogLevel Logger::logLevel = LogLevel::INFO;

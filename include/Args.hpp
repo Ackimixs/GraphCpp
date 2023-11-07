@@ -28,12 +28,13 @@ void checkArgs(std::map<std::string, std::vector<std::string>> args) {
     }
 }
 
+template<typename G>
 void runGraphArgs(std::map<std::string, std::vector<std::string>> args) {
     Logger::debug("Running graph args");
 
     int n = 1000;
     double p = .01;
-    List::Graph g;
+    G g;
 
     if (args.contains("-n") || args.contains("--nodes")) {
         std::vector<std::string> nArgs = args.contains("-n") ? args["-n"] : args["--nodes"];
@@ -44,7 +45,7 @@ void runGraphArgs(std::map<std::string, std::vector<std::string>> args) {
         if (Utils::isDouble(nArgs[0])) {
             n = std::stoi(nArgs[0]);
         } else {
-            Logger::error("Argument for -n is not a number");
+            Logger::error("Argument for -n | --nodes is not a number");
             exit(1);
         }
     }
@@ -58,7 +59,7 @@ void runGraphArgs(std::map<std::string, std::vector<std::string>> args) {
         if (Utils::isDouble(pArgs[0])) {
             p = std::stod(pArgs[0]);
         } else {
-            Logger::error("Argument for -p is not a number");
+            Logger::error("Argument for -p | --probability is not a number");
             exit(1);
         }
     }
@@ -67,25 +68,25 @@ void runGraphArgs(std::map<std::string, std::vector<std::string>> args) {
         std::vector<std::string> templateArgs = args.contains("-t") ? args["-t"] : args["--template"];
 
         if (templateArgs[0] == "cycle") {
-            g = List::Graph::createCycleGraph(n, Type::Graph::UNDIRECTED, true);
+            g = G::createCycleGraph(n, Type::Graph::UNDIRECTED, true);
         } else if (templateArgs[0] == "complete") {
-            g = List::Graph::createCompleteGraph(n, Type::Graph::UNDIRECTED, true);
+            g = G::createCompleteGraph(n, Type::Graph::UNDIRECTED, true);
         } else if (templateArgs[0] == "bipartite") {
-            g = List::Graph::createBipartiteGraph(n, Type::Graph::UNDIRECTED, true);
+            g = G::createBipartiteGraph(n, Type::Graph::UNDIRECTED, true);
         } else if (templateArgs[0] == "black-hole") {
             int startIndex = templateArgs.size() > 1 ? Utils::isNumber(templateArgs[1]) ? std::stoi(templateArgs[1]) : 0 : 0;
 
-            g = List::Graph::createBlackHoleGraph(n, Type::Graph::UNDIRECTED, true, startIndex);
+            g = G::createBlackHoleGraph(n, Type::Graph::UNDIRECTED, true, startIndex);
         } else if (templateArgs[0] == "star") {
-            g = List::Graph::createStarGraph(n, Type::Graph::UNDIRECTED, true);
+            g = G::createStarGraph(n, Type::Graph::UNDIRECTED, true);
         } else if (templateArgs[0] == "random") {
-            g = List::Graph::createRandomGraph(n, Type::Graph::UNDIRECTED, p, true);
+            g = G::createRandomGraph(n, Type::Graph::UNDIRECTED, p, true);
         } else {
             Logger::error("Unknown template");
             exit(1);
         }
     } else {
-        g = List::Graph::createRandomGraph(n, Type::Graph::UNDIRECTED, p, true);
+        g = G::createRandomGraph(n, Type::Graph::UNDIRECTED, p, true);
     }
 
     if (args.contains("-o") || args.contains("--output")) {
@@ -95,7 +96,7 @@ void runGraphArgs(std::map<std::string, std::vector<std::string>> args) {
             filename += ".gml";
         }
 
-        toGmlFile(filename, g);
+        toGmlFile<G>(filename, g);
     }
 
     if (args.contains("-a") || args.contains("--algo")) {
@@ -108,7 +109,7 @@ void runGraphArgs(std::map<std::string, std::vector<std::string>> args) {
                 if (Utils::isNumber(algoArg[1])) {
                     startIndex = std::stoi(algoArg[1]);
                 } else {
-                    Logger::error("Argument for -a is not a number");
+                    Logger::error("Second Argument for -a | --algo is not a number");
                     exit(1);
                 }
             }
@@ -142,7 +143,7 @@ void runGraphArgs(std::map<std::string, std::vector<std::string>> args) {
                 if (Utils::isNumber(algoArg[1])) {
                     startIndex = std::stoi(algoArg[1]);
                 } else {
-                    Logger::error("Argument for -a is not a number");
+                    Logger::error("Second Argument for -a | --algo is not a number");
                     exit(1);
                 }
             }

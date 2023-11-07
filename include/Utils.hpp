@@ -7,11 +7,14 @@
 #include <vector>
 #include <algorithm>
 #include <string>
+#include <chrono>
 
 namespace Utils {
     bool isNumber(const std::string& s);
 
     bool isDouble(const std::string& s);
+
+    std::string getCurrentDateTime();
 }
 
 namespace Type {
@@ -32,9 +35,6 @@ enum Color {
     WHITE,
     RED
 };
-
-
-typedef std::pair<int, double> edge;
 
 template <typename T>
 class vectorUtils {

@@ -1,10 +1,9 @@
 #include "../include/ListGraph.hpp"
-#include "../include/Matrix.hpp"
+#include "../include/MatrixGraph.hpp"
 #include "../include/GmlFile.hpp"
 #include "../include/Args.hpp"
 
 int main(int argv, char **argc) {
-    // TODO add log everywhere (with log level)
 
     // Convert argv to map
     std::map<std::string, std::vector<std::string>> args;
@@ -14,7 +13,7 @@ int main(int argv, char **argc) {
         if (arg[0] == '-') {
             args[arg] = std::vector<std::string>();
             for (int j = i + 1; j < argv; j++) {
-                auto arg2 = std::string(argc[j]);
+                std::string arg2 = argc[j];
                 if (arg2[0] == '-') {
                     break;
                 } else {
@@ -28,7 +27,22 @@ int main(int argv, char **argc) {
 
     Logger::debug("Graph v" + std::string(GRAPH_VERSION) + " started !");
 
-    runGraphArgs(args);
+    std::string graphType = argc[1];
+
+    if (graphType == "list") {
+        runGraphArgs<List::Graph<int>>(args);
+    } else if (graphType == "matrix") {
+        runGraphArgs<Matrix::Graph<int>>(args);
+    } else {
+        if (argv == 1) {
+            Logger::error("Please provide a graph type as first argument, see --help for more informations");
+        } else if (argc[1][0] == '-') {
+            Logger::error("Please provide a graph type as first argument, see --help for more informations");
+        } else {
+            Logger::error("Unknown graph type : " + graphType);
+        }
+        exit(1);
+    }
 
 //    List::Graph g(6);
 //
@@ -179,8 +193,6 @@ int main(int argv, char **argc) {
 //    Matrix ide = Matrix::identityMatrix(5);
 //
 //    ide.print();
-
-
 
     return 0;
 }

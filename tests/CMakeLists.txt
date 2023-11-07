@@ -22,6 +22,7 @@ add_executable(
         graphMatrixTest.cpp
 
         ../src/Utils.cpp
+        ../src/Logger.cpp
 )
 
 target_link_libraries(
