@@ -72,7 +72,7 @@ jobs:
       - name: Run middle_n_middle_p
         working-directory: ${{github.workspace}}/build
 
-        run: ./ggraph list -n 500 -p 0.01 -o graph-results/middle_n_middle_p.gml
+        run: ./ggraph list -n 2000 -p 0.01 -o graph-results/middle_n_middle_p.gml
 
       - name: Run little_n_big_p
         working-directory: ${{github.workspace}}/build
@@ -82,12 +82,12 @@ jobs:
       - name: Run big_n_little_p
         working-directory: ${{github.workspace}}/build
 
-        run: ./ggraph list -n 1000 -p 0.001 -o graph-results/big_n_little_p.gml
+        run: ./ggraph list -n 10000 -p 0.001 -o graph-results/big_n_little_p.gml
 
       - name: Run big_n_big_p
         working-directory: ${{github.workspace}}/build
 
-        run: ./ggraph list -n 1000 -p 0.3 -o graph-results/big_n_big_p.gml
+        run: ./ggraph list -n 10000 -p 0.1 -o graph-results/big_n_big_p.gml
 
       - name: Run middle_n_middle_p
         working-directory: ${{github.workspace}}/build
