@@ -1,4 +1,4 @@
-name: Graph with list structure
+name: Graph with matrix structure
 
 on:
   push:
@@ -146,7 +146,7 @@ jobs:
         uses: actions/download-artifact@v3.0.2
         with:
           name: graph-results
-          path: ${{github.workspace}}
+          path: ${{github.workspace}}/graph-matrix-results
 
       - name: Commit file
         working-directory: ${{github.workspace}}
