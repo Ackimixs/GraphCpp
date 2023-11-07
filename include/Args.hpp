@@ -4,6 +4,7 @@
 #include "GmlFile.hpp"
 #include "Constants.hpp"
 #include "Logger.hpp"
+#include "LogColor.hpp"
 
 #include <vector>
 #include <string>
@@ -156,7 +157,7 @@ void runGraphArgs(std::map<std::string, std::vector<std::string>> args) {
 
             std::stringstream ss;
 
-            for (auto i : vec) {
+            for (auto i: vec) {
                 ss << i << ", ";
             }
 
@@ -167,6 +168,23 @@ void runGraphArgs(std::map<std::string, std::vector<std::string>> args) {
             ss << "Time to execute DFS : ";
 
             ss << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << " milliseconds";
+
+            Logger::info(ss.str());
+
+        } else if (algoArg[0] == "bipartite") {
+            auto start = std::chrono::high_resolution_clock::now();
+
+            auto vec = g.isBipartite();
+
+            auto end = std::chrono::high_resolution_clock::now();
+
+            std::stringstream ss;
+
+            ss << "Time to execute Bipartite : ";
+
+            ss << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << " milliseconds";
+
+            ss << " | Graph is : " << LogColor::fgRed << (vec ? "Bipartite" : "not Bipartite") << LogColor::reset;
 
             Logger::info(ss.str());
 
