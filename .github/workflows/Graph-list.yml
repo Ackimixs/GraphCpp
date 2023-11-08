@@ -87,7 +87,7 @@ jobs:
       - name: Run big_n_big_p
         working-directory: ${{github.workspace}}/build
 
-        run: ./ggraph list -n 10000 -p 0.1 -o graph-results/big_n_big_p.gml
+        run: ./ggraph list -n 10000 -p 0.01 -o graph-results/big_n_big_p.gml
 
       - name: Run middle_n_middle_p
         working-directory: ${{github.workspace}}/build
