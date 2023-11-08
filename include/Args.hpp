@@ -13,7 +13,7 @@
 
 void checkArgs(std::map<std::string, std::vector<std::string>> args) {
     if (args.contains("-h") || args.contains("--help")) {
-        std::cout << "idk yet" << std::endl;
+        std::cout << "./ggraph [matrix | list] [-a | --algo, -n | --nodes, -v | --version, --debug, -p | --probability, -t | --templates]" << std::endl;
         exit(0);
     }
 
